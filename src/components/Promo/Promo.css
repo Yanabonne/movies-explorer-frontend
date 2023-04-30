@@ -1,0 +1,23 @@
+.promo {
+  background-color: #465dff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 524px;
+  background-image: url("../../images/practicum.svg");
+  background-size: 320px 320px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.promo__title {
+  color: white;
+  text-align: center;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+  margin: 0;
+  max-width: 730px;
+}
