@@ -6,10 +6,10 @@ function NavTab() {
       <a href="#about" class="navtab__link">
         О проекте
       </a>
-      <a href="/" class="navtab__link">
+      <a href="#techs" class="navtab__link">
         Технологии
       </a>
-      <a href="/" class="navtab__link">
+      <a href="#student" class="navtab__link">
         Студент
       </a>
     </nav>
