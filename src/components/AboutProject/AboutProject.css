@@ -3,8 +3,6 @@
 }
 
 .about__title {
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 22px;
   line-height: 1.23;
@@ -28,8 +26,6 @@
 }
 
 .about__subtitle {
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 1.2;
@@ -37,8 +33,6 @@
 }
 
 .about__text {
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.43;
@@ -52,8 +46,6 @@
 
 .about__period {
   padding: 0;
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.21;

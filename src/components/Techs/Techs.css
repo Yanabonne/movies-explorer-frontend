@@ -4,8 +4,6 @@
 }
 
 .techs__title {
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 22px;
   line-height: 1.23;
@@ -16,8 +14,6 @@
 
 .techs__subtitle {
   margin: 0 auto 26px;
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 50px;
   line-height: 1.16;
@@ -26,8 +22,6 @@
 
 .techs__text {
   max-width: 460px;
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.43;
@@ -43,8 +37,6 @@
 }
 
 .techs__tech {
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.21;
