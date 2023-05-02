@@ -1,7 +1,23 @@
 .movies {
   padding: 80px 70px;
   min-height: calc(100vh - 640px);
+}
+
+.movies__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px 28px;
+}
+
+.movies__more-button {
+  outline: none;
+  border: none;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  padding: 10px 0;
+  width: 100%;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.25;
+  margin-top: 60px;
 }
