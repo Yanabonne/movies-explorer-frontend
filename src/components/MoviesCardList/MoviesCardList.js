@@ -2,8 +2,12 @@ import React from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ movies, isSavedMoviesOpen }) {
-  const [showedMovies, setShowedMovies] = React.useState(movies);
+function MoviesCardList({
+  movies,
+  isSavedMoviesOpen,
+  onCardClick,
+  searchFilms,
+}) {
   const [showedCardsNumber, setShowedCardsNumber] = React.useState(12);
   const cardNumber = isSavedMoviesOpen
     ? movies.filter((card) => card.isLiked === true).length
@@ -13,40 +17,36 @@ function MoviesCardList({ movies, isSavedMoviesOpen }) {
     setShowedCardsNumber(showedCardsNumber + 12);
   }
 
-  function onSavedCardClick() {
-    setShowedMovies([...showedMovies]);
+  function editSearch(card) {
+    return searchFilms(card);
   }
-
-  React.useEffect(() => {
-    if (isSavedMoviesOpen) {
-      setShowedMovies(movies.filter((card) => card.isLiked === true));
-    }
-  }, []);
 
   return (
     <section className="movies">
       <div className="movies__grid">
         {!isSavedMoviesOpen &&
           movies
+            .filter((card) => editSearch(card))
             .slice(0, showedCardsNumber)
             .map((card) => (
               <MoviesCard
                 card={card}
                 key={card.id}
                 isSavedMoviesOpen={isSavedMoviesOpen}
-                onSavedCardClick={onSavedCardClick}
+                onSavedCardClick={onCardClick}
               />
             ))}
         {isSavedMoviesOpen &&
           movies
             .filter((card) => card.isLiked === true)
+            .filter((card) => editSearch(card))
             .slice(0, showedCardsNumber)
             .map((card) => (
               <MoviesCard
                 card={card}
                 key={card.id}
                 isSavedMoviesOpen={isSavedMoviesOpen}
-                onSavedCardClick={onSavedCardClick}
+                onSavedCardClick={onCardClick}
               />
             ))}
       </div>
