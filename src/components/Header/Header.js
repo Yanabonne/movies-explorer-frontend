@@ -1,8 +1,11 @@
 import React from "react";
 import "./Header.css";
+import { useNavigate } from "react-router-dom";
 import star from "../../images/star.svg";
 
 function Header({ isLoggedIn, isSavedMoviesOpen, setIsSavedMoviesOpen }) {
+  const navigate = useNavigate();
+
   return (
     <header className={isLoggedIn ? "header header__logged-in" : "header"}>
       <img className="header__star" src={star} alt="Star logo" />
@@ -14,7 +17,10 @@ function Header({ isLoggedIn, isSavedMoviesOpen, setIsSavedMoviesOpen }) {
                 ? "header__option"
                 : "header__option header__option_active"
             }
-            onClick={() => setIsSavedMoviesOpen(false)}
+            onClick={() => {
+              setIsSavedMoviesOpen(false);
+              navigate("/movies");
+            }}
           >
             Фильмы
           </p>
@@ -24,14 +30,20 @@ function Header({ isLoggedIn, isSavedMoviesOpen, setIsSavedMoviesOpen }) {
                 ? "header__option header__option_active"
                 : "header__option"
             }
-            onClick={() => setIsSavedMoviesOpen(true)}
+            onClick={() => {
+              setIsSavedMoviesOpen(true);
+              navigate("/saved-movies");
+            }}
           >
             Сохранённые фильмы
           </p>
         </nav>
       )}
       {isLoggedIn && (
-        <button className="header__account-button">
+        <button
+          className="header__account-button"
+          onClick={() => navigate("/profile")}
+        >
           <div className="header__account-logo"></div>
           Аккаунт
         </button>

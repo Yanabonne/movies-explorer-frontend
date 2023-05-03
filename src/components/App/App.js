@@ -5,10 +5,24 @@ import Main from "../Main/Main";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Movies from "../Movies/Movies";
+import Profile from "../Profile/Profile";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [isSavedMoviesOpen, setIsSavedMoviesOpen] = React.useState(false);
+  const [isFooterShown, setIsFooterShown] = React.useState(true);
+  const [currentUser, setCurrentUser] = React.useState({
+    name: "Jane Doe",
+    email: "janedoe@gmail.com",
+  });
+
+  function openMovies() {
+    setIsSavedMoviesOpen(false);
+  }
+
+  function openSavedMovies() {
+    setIsSavedMoviesOpen(true);
+  }
 
   return (
     <div className="app">
@@ -21,10 +35,27 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route
           path="/movies"
-          element={<Movies isSavedMoviesOpen={isSavedMoviesOpen} />}
+          element={
+            <Movies isSavedMoviesOpen={isSavedMoviesOpen} onOpen={openMovies} />
+          }
+        />
+        <Route
+          path="/saved-movies"
+          element={
+            <Movies
+              isSavedMoviesOpen={isSavedMoviesOpen}
+              onOpen={openSavedMovies}
+            />
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <Profile user={currentUser} setIsFooterShown={setIsFooterShown} />
+          }
         />
       </Routes>
-      <Footer />
+      <Footer isFooterShown={isFooterShown} />
     </div>
   );
 }

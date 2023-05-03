@@ -4,7 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import apiInintialMovies from "../../utils/apiInintialMovies";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function Movies({ isSavedMoviesOpen }) {
+function Movies({ isSavedMoviesOpen, onOpen }) {
   const [initialMovies, setInitialMovies] = React.useState([]);
   const [searchText, setSearchText] = React.useState("");
   const [isShortFilm, setIsShortFilm] = React.useState(false);
@@ -30,6 +30,7 @@ function Movies({ isSavedMoviesOpen }) {
         setInitialMovies(movies);
       })
       .catch((err) => console.log(err));
+    onOpen();
   }, []);
 
   return (
