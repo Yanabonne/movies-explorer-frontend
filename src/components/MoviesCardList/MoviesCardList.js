@@ -19,7 +19,7 @@ function MoviesCardList({ movies, isSavedMoviesOpen }) {
 
   React.useEffect(() => {
     if (isSavedMoviesOpen) {
-      setShowedMovies(showedMovies.filter((card) => card.isLiked === true));
+      setShowedMovies(movies.filter((card) => card.isLiked === true));
     }
   }, []);
 
@@ -34,6 +34,7 @@ function MoviesCardList({ movies, isSavedMoviesOpen }) {
                 card={card}
                 key={card.id}
                 isSavedMoviesOpen={isSavedMoviesOpen}
+                onSavedCardClick={onSavedCardClick}
               />
             ))}
         {isSavedMoviesOpen &&

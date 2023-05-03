@@ -2,17 +2,13 @@ import React from "react";
 import "./MoviesCard.css";
 
 function MoviesCard({ card, onSavedCardClick, isSavedMoviesOpen }) {
-  const [isLiked, setIsLiked] = React.useState(card.isLiked);
-
   function onCardClick() {
     if (card.isLiked) {
       card.isLiked = false;
-      setIsLiked(false);
-      isSavedMoviesOpen && onSavedCardClick();
+      onSavedCardClick();
     } else {
       card.isLiked = true;
-      setIsLiked(true);
-      isSavedMoviesOpen && onSavedCardClick();
+      onSavedCardClick();
     }
   }
 
@@ -28,10 +24,16 @@ function MoviesCard({ card, onSavedCardClick, isSavedMoviesOpen }) {
         src={`https://api.nomoreparties.co${card.image.url}`}
       />
       <button
-        className={isLiked ? "card__button card__button_liked" : "card__button"}
+        className={
+          !isSavedMoviesOpen
+            ? card.isLiked
+              ? "card__button card__button_liked"
+              : "card__button"
+            : "card__button card__button_delete"
+        }
         onClick={onCardClick}
       >
-        {isLiked ? "" : "Сохранить"}
+        {!isSavedMoviesOpen ? (card.isLiked ? "" : "Сохранить") : ""}
       </button>
     </article>
   );
