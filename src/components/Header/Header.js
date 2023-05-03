@@ -1,14 +1,33 @@
+import React from "react";
 import "./Header.css";
 import star from "../../images/star.svg";
 
-function Header({ isLoggedIn }) {
+function Header({ isLoggedIn, isSavedMoviesOpen, setIsSavedMoviesOpen }) {
   return (
     <header className={isLoggedIn ? "header header__logged-in" : "header"}>
       <img className="header__star" src={star} alt="Star logo" />
       {isLoggedIn && (
         <nav className="header__nav">
-          <p className="header__option header__option_active">Фильмы</p>
-          <p className="header__option">Сохранённые фильмы</p>
+          <p
+            className={
+              isSavedMoviesOpen
+                ? "header__option"
+                : "header__option header__option_active"
+            }
+            onClick={() => setIsSavedMoviesOpen(false)}
+          >
+            Фильмы
+          </p>
+          <p
+            className={
+              isSavedMoviesOpen
+                ? "header__option header__option_active"
+                : "header__option"
+            }
+            onClick={() => setIsSavedMoviesOpen(true)}
+          >
+            Сохранённые фильмы
+          </p>
         </nav>
       )}
       {isLoggedIn && (

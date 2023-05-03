@@ -4,7 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import apiInintialMovies from "../../utils/apiInintialMovies";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function Movies() {
+function Movies({ isSavedMoviesOpen }) {
   const [initialMovies, setInitialMovies] = React.useState([]);
 
   React.useEffect(() => {
@@ -22,7 +22,10 @@ function Movies() {
   return (
     <main>
       <SearchForm />
-      <MoviesCardList movies={initialMovies} />
+      <MoviesCardList
+        movies={initialMovies}
+        isSavedMoviesOpen={isSavedMoviesOpen}
+      />
     </main>
   );
 }

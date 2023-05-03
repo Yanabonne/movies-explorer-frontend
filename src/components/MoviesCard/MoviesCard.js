@@ -1,16 +1,18 @@
 import React from "react";
 import "./MoviesCard.css";
 
-function MoviesCard({ card }) {
+function MoviesCard({ card, onSavedCardClick, isSavedMoviesOpen }) {
   const [isLiked, setIsLiked] = React.useState(card.isLiked);
 
   function onCardClick() {
     if (card.isLiked) {
       card.isLiked = false;
       setIsLiked(false);
+      isSavedMoviesOpen && onSavedCardClick();
     } else {
       card.isLiked = true;
       setIsLiked(true);
+      isSavedMoviesOpen && onSavedCardClick();
     }
   }
 
