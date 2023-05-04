@@ -5,6 +5,7 @@
   justify-content: space-between;
   flex-direction: row;
   padding: 18px 70px;
+  position: relative;
 }
 
 .header__logged-in {
@@ -58,6 +59,7 @@
   font-size: 13px;
   line-height: 1.38;
   cursor: pointer;
+  margin: 0;
 }
 
 .header__option_active {
@@ -86,9 +88,46 @@
   background-position: center;
 }
 
+.header__burger {
+  width: 44px;
+  height: 44px;
+  background: none;
+  background-image: url("../../images/burger.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  outline: none;
+  border: none;
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .header {
     padding: 18px 30px;
+    box-sizing: border-box;
+  }
+
+  .header__no-display {
+    display: none;
+  }
+
+  .header__burger {
+    display: block;
+  }
+
+  .header__nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    margin-left: 0;
+  }
+
+  .header__option {
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .header__option_active {
+    text-decoration: underline;
   }
 }
 
@@ -107,5 +146,9 @@
 
   .header__button_signin {
     padding: 5px 12px;
+  }
+
+  .header__nav {
+    gap: 24px;
   }
 }

@@ -2,14 +2,18 @@ import React from "react";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import star from "../../images/star.svg";
+import BurgerPopup from "../BurgerPopup/BurgerPopup";
 
 function Header({
   isLoggedIn,
   isSavedMoviesOpen,
   setIsSavedMoviesOpen,
   isHeaderShown,
+  isMainPageOpen,
 }) {
   const navigate = useNavigate();
+
+  const [isMenuShown, setIsMenuShown] = React.useState(false);
 
   return (
     isHeaderShown && (
@@ -21,43 +25,47 @@ function Header({
           onClick={() => navigate("/")}
         />
         {isLoggedIn && (
-          <nav className="header__nav">
-            <p
-              className={
-                isSavedMoviesOpen
-                  ? "header__option"
-                  : "header__option header__option_active"
-              }
-              onClick={() => {
-                setIsSavedMoviesOpen(false);
-                navigate("/movies");
-              }}
+          <>
+            <button
+              className="header__burger"
+              onClick={() => setIsMenuShown(true)}
+            />
+            <nav className="header__nav header__no-display">
+              <p
+                className={
+                  isSavedMoviesOpen
+                    ? "header__option"
+                    : "header__option header__option_active"
+                }
+                onClick={() => {
+                  setIsSavedMoviesOpen(false);
+                  navigate("/movies");
+                }}
+              >
+                Фильмы
+              </p>
+              <p
+                className={
+                  isSavedMoviesOpen
+                    ? "header__option header__option_active"
+                    : "header__option"
+                }
+                onClick={() => {
+                  setIsSavedMoviesOpen(true);
+                  navigate("/saved-movies");
+                }}
+              >
+                Сохранённые фильмы
+              </p>
+            </nav>
+            <button
+              className="header__account-button header__no-display"
+              onClick={() => navigate("/profile")}
             >
-              Фильмы
-            </p>
-            <p
-              className={
-                isSavedMoviesOpen
-                  ? "header__option header__option_active"
-                  : "header__option"
-              }
-              onClick={() => {
-                setIsSavedMoviesOpen(true);
-                navigate("/saved-movies");
-              }}
-            >
-              Сохранённые фильмы
-            </p>
-          </nav>
-        )}
-        {isLoggedIn && (
-          <button
-            className="header__account-button"
-            onClick={() => navigate("/profile")}
-          >
-            <div className="header__account-logo"></div>
-            Аккаунт
-          </button>
+              <div className="header__account-logo"></div>
+              Аккаунт
+            </button>
+          </>
         )}
         {!isLoggedIn && (
           <div className="header__buttons">
@@ -78,6 +86,65 @@ function Header({
               Войти
             </button>
           </div>
+        )}
+        {isMenuShown && (
+          <BurgerPopup setIsMenuShown={setIsMenuShown}>
+            <>
+              <nav className="header__nav">
+                <p
+                  className={
+                    !isMainPageOpen
+                      ? "header__option"
+                      : "header__option header__option_active"
+                  }
+                  onClick={() => {
+                    navigate("/");
+                    setIsMenuShown(false);
+                  }}
+                >
+                  Главная
+                </p>
+                <p
+                  className={
+                    !isSavedMoviesOpen && !isMainPageOpen
+                      ? "header__option header__option_active"
+                      : "header__option"
+                  }
+                  onClick={() => {
+                    setIsSavedMoviesOpen(false);
+                    setIsMenuShown(false);
+                    navigate("/movies");
+                  }}
+                >
+                  Фильмы
+                </p>
+                <p
+                  className={
+                    isSavedMoviesOpen && !isMainPageOpen
+                      ? "header__option header__option_active"
+                      : "header__option"
+                  }
+                  onClick={() => {
+                    setIsSavedMoviesOpen(true);
+                    setIsMenuShown(false);
+                    navigate("/saved-movies");
+                  }}
+                >
+                  Сохранённые фильмы
+                </p>
+              </nav>
+              <button
+                className="header__account-button"
+                onClick={() => {
+                  setIsMenuShown(false);
+                  navigate("/profile");
+                }}
+              >
+                <div className="header__account-logo"></div>
+                Аккаунт
+              </button>
+            </>
+          </BurgerPopup>
         )}
       </header>
     )

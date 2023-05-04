@@ -13,6 +13,7 @@ import NotFound from "../NotFound/NotFound";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [isSavedMoviesOpen, setIsSavedMoviesOpen] = React.useState(false);
+  const [isMainPageOpen, setIsMainPageOpen] = React.useState(false);
   const [isFooterShown, setIsFooterShown] = React.useState(true);
   const [isHeaderShown, setIsHeaderShown] = React.useState(true);
   const [currentUser, setCurrentUser] = React.useState({
@@ -35,9 +36,13 @@ function App() {
         isSavedMoviesOpen={isSavedMoviesOpen}
         setIsSavedMoviesOpen={setIsSavedMoviesOpen}
         isHeaderShown={isHeaderShown}
+        isMainPageOpen={isMainPageOpen}
       />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route
+          path="/"
+          element={<Main setIsMainPageOpen={setIsMainPageOpen} />}
+        />
         <Route
           path="/movies"
           element={
