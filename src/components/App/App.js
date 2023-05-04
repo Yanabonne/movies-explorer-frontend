@@ -11,7 +11,7 @@ import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [isSavedMoviesOpen, setIsSavedMoviesOpen] = React.useState(false);
   const [isFooterShown, setIsFooterShown] = React.useState(true);
   const [isHeaderShown, setIsHeaderShown] = React.useState(true);
@@ -56,7 +56,11 @@ function App() {
         <Route
           path="/profile"
           element={
-            <Profile user={currentUser} setIsFooterShown={setIsFooterShown} />
+            <Profile
+              user={currentUser}
+              setIsFooterShown={setIsFooterShown}
+              setIsLoggedIn={setIsLoggedIn}
+            />
           }
         />
         <Route
@@ -74,6 +78,7 @@ function App() {
             <Login
               setIsFooterShown={setIsFooterShown}
               setIsHeaderShown={setIsHeaderShown}
+              setIsLoggedIn={setIsLoggedIn}
             />
           }
         />

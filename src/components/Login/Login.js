@@ -3,7 +3,7 @@ import "../Register/Register.css";
 import star from "../../images/star.svg";
 import { useNavigate } from "react-router-dom";
 
-function Login({ setIsFooterShown, setIsHeaderShown }) {
+function Login({ setIsFooterShown, setIsHeaderShown, setIsLoggedIn }) {
   const navigate = useNavigate();
 
   const emailRef = React.useRef();
@@ -59,7 +59,8 @@ function Login({ setIsFooterShown, setIsHeaderShown }) {
   function onSubmitForm(e) {
     e.preventDefault();
     if (validateEmail() & validatePassword()) {
-      navigate("/");
+      setIsLoggedIn(true);
+      navigate("/movies");
     }
   }
 

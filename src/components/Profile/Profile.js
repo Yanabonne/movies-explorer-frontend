@@ -3,7 +3,7 @@ import "./Profile.css";
 import "../Register/Register.css";
 import { useNavigate } from "react-router-dom";
 
-function Profile({ user, setIsFooterShown }) {
+function Profile({ user, setIsFooterShown, setIsLoggedIn }) {
   const navigate = useNavigate();
   const [isEditProfile, setIsEditProfile] = React.useState(false);
 
@@ -70,6 +70,7 @@ function Profile({ user, setIsFooterShown }) {
       setIsFooterShown(true);
     };
   }, []);
+
   return !isEditProfile ? (
     <section className="profile">
       <h1 className="profile__title">{`Привет, ${user.name}!`}</h1>
@@ -84,7 +85,13 @@ function Profile({ user, setIsFooterShown }) {
       <p className="profile__edit" onClick={() => setIsEditProfile(true)}>
         Редактировать
       </p>
-      <p className="profile__exit" onClick={() => navigate("/signin")}>
+      <p
+        className="profile__exit"
+        onClick={() => {
+          navigate("/signin");
+          setIsLoggedIn(false);
+        }}
+      >
         Выйти из аккаунта
       </p>
     </section>

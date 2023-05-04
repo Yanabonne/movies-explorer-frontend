@@ -61,8 +61,20 @@ function Header({
         )}
         {!isLoggedIn && (
           <div className="header__buttons">
-            <p className="header__button header__button_signup">Регистрация</p>
-            <button className="header__button header__button_signin">
+            <p
+              className="header__button header__button_signup"
+              onClick={() => {
+                navigate("/signup");
+              }}
+            >
+              Регистрация
+            </p>
+            <button
+              className="header__button header__button_signin"
+              onClick={() => {
+                navigate("/signin");
+              }}
+            >
               Войти
             </button>
           </div>
