@@ -6,11 +6,13 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Movies from "../Movies/Movies";
 import Profile from "../Profile/Profile";
+import Register from "../Register/Register";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [isSavedMoviesOpen, setIsSavedMoviesOpen] = React.useState(false);
   const [isFooterShown, setIsFooterShown] = React.useState(true);
+  const [isHeaderShown, setIsHeaderShown] = React.useState(true);
   const [currentUser, setCurrentUser] = React.useState({
     name: "Jane Doe",
     email: "janedoe@gmail.com",
@@ -30,6 +32,7 @@ function App() {
         isLoggedIn={isLoggedIn}
         isSavedMoviesOpen={isSavedMoviesOpen}
         setIsSavedMoviesOpen={setIsSavedMoviesOpen}
+        isHeaderShown={isHeaderShown}
       />
       <Routes>
         <Route path="/" element={<Main />} />
@@ -52,6 +55,15 @@ function App() {
           path="/profile"
           element={
             <Profile user={currentUser} setIsFooterShown={setIsFooterShown} />
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <Register
+              setIsFooterShown={setIsFooterShown}
+              setIsHeaderShown={setIsHeaderShown}
+            />
           }
         />
       </Routes>
