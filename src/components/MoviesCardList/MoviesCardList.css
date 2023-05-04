@@ -21,3 +21,29 @@
   line-height: 1.25;
   margin-top: 60px;
 }
+
+@media screen and (max-width: 980px) {
+  .movies__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 35px 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .movies {
+    padding: 70px 30px 80px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .movies__grid {
+    grid-template-columns: 1fr;
+    gap: 16px 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .movies {
+    padding: 50px 14px 80px;
+  }
+}
