@@ -7,6 +7,8 @@ import Footer from "../Footer/Footer";
 import Movies from "../Movies/Movies";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
+import Login from "../Login/Login";
+import NotFound from "../NotFound/NotFound";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
@@ -61,6 +63,24 @@ function App() {
           path="/signup"
           element={
             <Register
+              setIsFooterShown={setIsFooterShown}
+              setIsHeaderShown={setIsHeaderShown}
+            />
+          }
+        />
+        <Route
+          path="/signin"
+          element={
+            <Login
+              setIsFooterShown={setIsFooterShown}
+              setIsHeaderShown={setIsHeaderShown}
+            />
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <NotFound
               setIsFooterShown={setIsFooterShown}
               setIsHeaderShown={setIsHeaderShown}
             />

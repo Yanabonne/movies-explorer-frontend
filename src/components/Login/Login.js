@@ -1,9 +1,9 @@
 import React from "react";
-import "./Register.css";
+import "../Register/Register.css";
 import star from "../../images/star.svg";
 import { useNavigate } from "react-router-dom";
 
-function Register({ setIsFooterShown, setIsHeaderShown }) {
+function Login({ setIsFooterShown, setIsHeaderShown }) {
   const navigate = useNavigate();
 
   const emailRef = React.useRef();
@@ -15,11 +15,6 @@ function Register({ setIsFooterShown, setIsHeaderShown }) {
   const [passwordInput, setPasswordInput] = React.useState("");
   const [isPasswordValid, setIsPasswordValid] = React.useState(true);
   const [passwordInputError, setPasswordInputError] = React.useState("");
-
-  const nameRef = React.useRef();
-  const [nameInput, setNameInput] = React.useState("");
-  const [isNameValid, setIsNameValid] = React.useState(true);
-  const [nameInputError, setNameInputError] = React.useState("");
 
   function updateEmail(email) {
     setEmailInput(email);
@@ -43,10 +38,10 @@ function Register({ setIsFooterShown, setIsHeaderShown }) {
 
   function updatePassword(pw) {
     setPasswordInput(pw);
-    validatePassword();
+    validatePassword(pw);
   }
 
-  function validatePassword() {
+  function validatePassword(pw) {
     let isInputValid = true;
     let errorText = "";
 
@@ -61,30 +56,10 @@ function Register({ setIsFooterShown, setIsHeaderShown }) {
     return isInputValid;
   }
 
-  function updateName(nm) {
-    setNameInput(nm);
-    validateName();
-  }
-
-  function validateName() {
-    let isInputValid = true;
-    let errorText = "";
-
-    if (!nameRef.current.validity.valid) {
-      errorText = nameRef.current.validationMessage;
-      isInputValid = false;
-    }
-
-    setIsNameValid(isInputValid);
-    setNameInputError(errorText);
-
-    return isInputValid;
-  }
-
   function onSubmitForm(e) {
     e.preventDefault();
-    if (validateEmail() & validatePassword() & validateName) {
-      navigate("/signin");
+    if (validateEmail() & validatePassword()) {
+      navigate("/");
     }
   }
 
@@ -105,27 +80,8 @@ function Register({ setIsFooterShown, setIsHeaderShown }) {
         src={star}
         onClick={() => navigate("/")}
       />
-      <h1 className="reg__title">Добро пожаловать!</h1>
+      <h1 className="reg__title">Рады видеть!</h1>
       <form className="reg__form" onSubmit={onSubmitForm}>
-        <h2 className="reg__form-title">Имя</h2>
-        <input
-          type="text"
-          className={
-            isNameValid
-              ? "reg__form-input"
-              : "reg__form-input reg__form-input_error"
-          }
-          name="name"
-          placeholder="Введите своё имя"
-          required
-          maxLength={30}
-          ref={nameRef}
-          value={nameInput}
-          onChange={(e) => {
-            updateName(e.target.value);
-          }}
-        />
-        <span className="reg__input-error">{nameInputError}</span>
         <h2 className="reg__form-title">E-mail</h2>
         <input
           type="email"
@@ -161,18 +117,18 @@ function Register({ setIsFooterShown, setIsHeaderShown }) {
           onChange={(e) => updatePassword(e.target.value)}
         />
         <span className="reg__input-error">{passwordInputError}</span>
-        <button className="reg__button" type="submit">
-          Зарегистрироваться
+        <button className="reg__button reg__button_login" type="submit">
+          Войти
         </button>
       </form>
       <p className="reg__text">
-        Уже зарегистрированы?{" "}
-        <span className="reg__span" onClick={() => navigate("/signin")}>
-          Войти
+        Ещё не зарегистрированы?{" "}
+        <span className="reg__span" onClick={() => navigate("/signup")}>
+          Регистрация
         </span>
       </p>
     </section>
   );
 }
 
-export default Register;
+export default Login;

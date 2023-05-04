@@ -3,13 +3,13 @@ import "./NavTab.css";
 function NavTab() {
   return (
     <nav className="navtab">
-      <a href="#about" class="navtab__link">
+      <a href="#about" className="navtab__link">
         О проекте
       </a>
-      <a href="#techs" class="navtab__link">
+      <a href="#techs" className="navtab__link">
         Технологии
       </a>
-      <a href="#student" class="navtab__link">
+      <a href="#student" className="navtab__link">
         Студент
       </a>
     </nav>
