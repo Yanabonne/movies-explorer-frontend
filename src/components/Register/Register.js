@@ -83,7 +83,7 @@ function Register({ setIsFooterShown, setIsHeaderShown }) {
 
   function onSubmitForm(e) {
     e.preventDefault();
-    if (validateEmail() & validatePassword() & validateName) {
+    if (validateEmail() && validatePassword() && validateName()) {
       navigate("/signin");
     }
   }
@@ -161,11 +161,7 @@ function Register({ setIsFooterShown, setIsHeaderShown }) {
           onChange={(e) => updatePassword(e.target.value)}
         />
         <span className="reg__input-error">{passwordInputError}</span>
-        <button
-          className="reg__button"
-          type="submit"
-          onClick={() => navigate("/signin")}
-        >
+        <button className="reg__button" type="submit">
           Зарегистрироваться
         </button>
       </form>

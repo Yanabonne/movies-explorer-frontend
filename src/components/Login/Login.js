@@ -58,7 +58,7 @@ function Login({ setIsFooterShown, setIsHeaderShown, setIsLoggedIn }) {
 
   function onSubmitForm(e) {
     e.preventDefault();
-    if (validateEmail() & validatePassword()) {
+    if (validateEmail() && validatePassword()) {
       setIsLoggedIn(true);
       navigate("/movies");
     }

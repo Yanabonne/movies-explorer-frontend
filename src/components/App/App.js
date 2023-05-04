@@ -9,6 +9,7 @@ import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
+import ErrorPopup from "../ErrorPopup/ErrorPopup";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
@@ -16,6 +17,8 @@ function App() {
   const [pageOpen, setPageOpen] = React.useState("Movies");
   const [isFooterShown, setIsFooterShown] = React.useState(true);
   const [isHeaderShown, setIsHeaderShown] = React.useState(true);
+  const [isErrorPopupShown, setIsErrorPopupShown] = React.useState();
+  const [errorPopupText, setErrorPopupText] = React.useState("");
   const [currentUser, setCurrentUser] = React.useState({
     name: "Jane Doe",
     email: "janedoe@gmail.com",
@@ -27,6 +30,15 @@ function App() {
 
   function openSavedMovies() {
     setIsSavedMoviesOpen(true);
+  }
+
+  function showErrorPopup(text) {
+    setErrorPopupText(text);
+    setIsErrorPopupShown(true);
+    setTimeout(() => {
+      setErrorPopupText("");
+      setIsErrorPopupShown(false);
+    }, 5000);
   }
 
   return (
@@ -101,6 +113,10 @@ function App() {
         />
       </Routes>
       <Footer isFooterShown={isFooterShown} />
+      <ErrorPopup
+        isErrorPopupShown={isErrorPopupShown}
+        errorPopupText={errorPopupText}
+      />
     </div>
   );
 }
