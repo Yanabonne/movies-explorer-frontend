@@ -26,6 +26,10 @@
 
 https://yanabonnemovies.nomoredomains.monster/
 
+**:clapper: Ссылка на макет**
+
+https://www.figma.com/file/cGRjF1hrMWRhFZAB19MpdI/Diploma-(Copy)?node-id=891%3A3857&t=pL0mW83x1LDylGKV-1
+
 **:clapper: Команда для сборки и запуска проекта**
 
 ```
