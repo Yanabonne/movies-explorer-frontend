@@ -11,7 +11,7 @@ import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isSavedMoviesOpen, setIsSavedMoviesOpen] = React.useState(false);
   const [isFooterShown, setIsFooterShown] = React.useState(true);
   const [isHeaderShown, setIsHeaderShown] = React.useState(true);

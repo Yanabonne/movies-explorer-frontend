@@ -10,8 +10,10 @@ function MoviesCardList({
 }) {
   const [showedCardsNumber, setShowedCardsNumber] = React.useState(12);
   const cardNumber = isSavedMoviesOpen
-    ? movies.filter((card) => card.isLiked === true).length
-    : movies.length;
+    ? movies
+        .filter((card) => editSearch(card))
+        .filter((card) => card.isLiked === true).length
+    : movies.filter((card) => editSearch(card)).length;
 
   function onButtonClick() {
     setShowedCardsNumber(showedCardsNumber + 12);

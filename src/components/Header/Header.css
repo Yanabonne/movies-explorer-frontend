@@ -84,3 +84,27 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 18px 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 18px 14px;
+  }
+
+  .header__buttons {
+    gap: 14px;
+  }
+
+  .header__button {
+    font-size: 11px;
+  }
+
+  .header__button_signin {
+    padding: 5px 12px;
+  }
+}

@@ -16,6 +16,7 @@
   justify-content: space-between;
   padding: 20px 0 19px;
   border-bottom: 1px solid #e8e8e8;
+  gap: 5px;
 }
 
 .portfolio__source:last-child {
@@ -40,4 +41,34 @@
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio {
+    padding: 0 50px 90px;
+  }
+
+  .portfolio__text {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .portfolio {
+    padding: 0 14px 70px;
+  }
+
+  .portfolio__title {
+    font-size: 14px;
+    margin: 0 0 20px;
+  }
+
+  .portfolio__text {
+    font-size: 18px;
+  }
+
+  .portfolio__button {
+    width: 18px;
+    height: 28px;
+  }
 }

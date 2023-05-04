@@ -16,6 +16,7 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 49px;
 }
 
 .me__description {
@@ -54,6 +55,72 @@
 }
 
 .me__picture {
-  width: 270px;
+  max-width: 270px;
   border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .me {
+    padding: 90px 50px;
+  }
+
+  .me__picture {
+    max-width: 255px;
+  }
+
+  .me__author {
+    margin-bottom: 16px;
+    font-size: 40px;
+  }
+
+  .me__about {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .me__text {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 87px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .me__picture {
+    max-width: 100%;
+  }
+
+  .me__container {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .me__author {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+
+  .me__about {
+    font-size: 11px;
+  }
+
+  .me__text {
+    font-size: 11px;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .me {
+    padding: 70px 14px;
+  }
+
+  .me__title {
+    font-size: 18px;
+    margin: 0 0 60px;
+    padding-bottom: 28px;
+  }
 }

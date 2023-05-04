@@ -17,3 +17,19 @@
   color: black;
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .navtab {
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navtab {
+    gap: 24px;
+  }
+
+  .navtab__link {
+    font-size: 11px;
+  }
+}
