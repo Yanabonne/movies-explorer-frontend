@@ -84,11 +84,14 @@ function Profile({ user, setIsFooterShown, setIsLoggedIn, setPageOpen }) {
         <p className="profile__text profile__text_span">E-mail</p>
         <p className="profile__text">{user.email}</p>
       </div>
-      <p className="profile__edit" onClick={() => setIsEditProfile(true)}>
+      <p
+        className="profile__edit responsive"
+        onClick={() => setIsEditProfile(true)}
+      >
         Редактировать
       </p>
       <p
-        className="profile__exit"
+        className="profile__exit responsive"
         onClick={() => {
           navigate("/signin");
           setIsLoggedIn(false);
@@ -138,12 +141,18 @@ function Profile({ user, setIsFooterShown, setIsLoggedIn, setPageOpen }) {
           }}
         />
         <span className="reg__input-error">{emailInputError}</span>
-        <button className="reg__button reg__button_login" type="submit">
+        <button
+          className="reg__button reg__button_login responsive"
+          type="submit"
+        >
           Сохранить
         </button>
       </form>
       <p className="reg__text">
-        <span className="reg__span" onClick={() => setIsEditProfile(false)}>
+        <span
+          className="reg__span responsive"
+          onClick={() => setIsEditProfile(false)}
+        >
           Назад
         </span>
       </p>

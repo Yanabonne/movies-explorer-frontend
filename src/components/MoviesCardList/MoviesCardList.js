@@ -53,7 +53,10 @@ function MoviesCardList({
             ))}
       </div>
       {cardNumber > showedCardsNumber && (
-        <button className="movies__more-button" onClick={onButtonClick}>
+        <button
+          className="movies__more-button responsive"
+          onClick={onButtonClick}
+        >
           Ещё
         </button>
       )}

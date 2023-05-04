@@ -21,7 +21,7 @@ function NotFound({ setIsFooterShown, setIsHeaderShown }) {
         <p className="not-found__subtitle">Страница не найдена</p>
       </div>
       <p
-        className="not-found__back"
+        className="not-found__back responsive"
         onClick={() => {
           navigate(-1);
         }}

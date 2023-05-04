@@ -27,9 +27,9 @@ function MoviesCard({ card, onSavedCardClick, isSavedMoviesOpen }) {
         className={
           !isSavedMoviesOpen
             ? card.isLiked
-              ? "card__button card__button_liked"
-              : "card__button"
-            : "card__button card__button_delete"
+              ? "card__button responsive card__button_liked"
+              : "card__button responsive"
+            : "card__button responsive card__button_delete"
         }
         onClick={onCardClick}
       >

@@ -11,7 +11,7 @@ function Footer({ isFooterShown }) {
           <p className="footer__text">&copy; 2020</p>
           <div className="footer__links">
             <a
-              className="footer__text footer__link"
+              className="footer__text footer__link responsive"
               href="https://practicum.yandex.ru/"
               target="_blank"
               rel="noreferrer"
@@ -19,7 +19,7 @@ function Footer({ isFooterShown }) {
               Яндекс.Практикум
             </a>
             <a
-              className="footer__text footer__link"
+              className="footer__text footer__link responsive"
               href="https://github.com/Yanabonne"
               target="_blank"
               rel="noreferrer"

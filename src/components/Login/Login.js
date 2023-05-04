@@ -118,13 +118,19 @@ function Login({ setIsFooterShown, setIsHeaderShown, setIsLoggedIn }) {
           onChange={(e) => updatePassword(e.target.value)}
         />
         <span className="reg__input-error">{passwordInputError}</span>
-        <button className="reg__button reg__button_login" type="submit">
+        <button
+          className="reg__button reg__button_login responsive"
+          type="submit"
+        >
           Войти
         </button>
       </form>
       <p className="reg__text">
         Ещё не зарегистрированы?{" "}
-        <span className="reg__span" onClick={() => navigate("/signup")}>
+        <span
+          className="reg__span responsive"
+          onClick={() => navigate("/signup")}
+        >
           Регистрация
         </span>
       </p>

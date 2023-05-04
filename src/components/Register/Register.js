@@ -161,13 +161,16 @@ function Register({ setIsFooterShown, setIsHeaderShown }) {
           onChange={(e) => updatePassword(e.target.value)}
         />
         <span className="reg__input-error">{passwordInputError}</span>
-        <button className="reg__button" type="submit">
+        <button className="reg__button responsive" type="submit">
           Зарегистрироваться
         </button>
       </form>
       <p className="reg__text">
         Уже зарегистрированы?{" "}
-        <span className="reg__span" onClick={() => navigate("/signin")}>
+        <span
+          className="reg__span responsive"
+          onClick={() => navigate("/signin")}
+        >
           Войти
         </span>
       </p>

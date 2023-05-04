@@ -5,3 +5,11 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   position: relative;
 }
+
+.responsive {
+  transition: opacity 0.7s ease;
+}
+
+.responsive:hover {
+  opacity: 0.7;
+}

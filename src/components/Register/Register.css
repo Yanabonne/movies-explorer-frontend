@@ -11,6 +11,7 @@
 .reg__star {
   width: 38px;
   height: 38px;
+  cursor: pointer;
 }
 
 .reg__title {

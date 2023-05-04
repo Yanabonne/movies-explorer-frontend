@@ -19,7 +19,7 @@ function Header({
     isHeaderShown && (
       <header className={isLoggedIn ? "header header__logged-in" : "header"}>
         <img
-          className="header__star"
+          className="header__star responsive"
           src={star}
           alt="Star logo"
           onClick={() => navigate("/")}
@@ -27,15 +27,15 @@ function Header({
         {isLoggedIn && (
           <>
             <button
-              className="header__burger"
+              className="header__burger responsive"
               onClick={() => setIsMenuShown(true)}
             />
             <nav className="header__nav header__no-display">
               <p
                 className={
                   isSavedMoviesOpen
-                    ? "header__option"
-                    : "header__option header__option_active"
+                    ? "header__option responsive"
+                    : "header__option header__option_active responsive"
                 }
                 onClick={() => {
                   setIsSavedMoviesOpen(false);
@@ -47,8 +47,8 @@ function Header({
               <p
                 className={
                   isSavedMoviesOpen
-                    ? "header__option header__option_active"
-                    : "header__option"
+                    ? "header__option header__option_active responsive"
+                    : "header__option responsive"
                 }
                 onClick={() => {
                   setIsSavedMoviesOpen(true);
@@ -59,7 +59,7 @@ function Header({
               </p>
             </nav>
             <button
-              className="header__account-button header__no-display"
+              className="header__account-button responsive header__no-display"
               onClick={() => navigate("/profile")}
             >
               <div className="header__account-logo"></div>
@@ -70,7 +70,7 @@ function Header({
         {!isLoggedIn && (
           <div className="header__buttons">
             <p
-              className="header__button header__button_signup"
+              className="header__button header__button_signup responsive"
               onClick={() => {
                 navigate("/signup");
               }}
@@ -78,7 +78,7 @@ function Header({
               Регистрация
             </p>
             <button
-              className="header__button header__button_signin"
+              className="header__button header__button_signin responsive"
               onClick={() => {
                 navigate("/signin");
               }}
@@ -94,8 +94,8 @@ function Header({
                 <p
                   className={
                     pageOpen !== "Main"
-                      ? "header__option"
-                      : "header__option header__option_active"
+                      ? "header__option responsive"
+                      : "header__option header__option_active responsive"
                   }
                   onClick={() => {
                     navigate("/");
@@ -107,8 +107,8 @@ function Header({
                 <p
                   className={
                     !isSavedMoviesOpen && pageOpen === "Movies"
-                      ? "header__option header__option_active"
-                      : "header__option"
+                      ? "header__option header__option_active responsive"
+                      : "header__option responsive"
                   }
                   onClick={() => {
                     setIsSavedMoviesOpen(false);
@@ -121,8 +121,8 @@ function Header({
                 <p
                   className={
                     isSavedMoviesOpen && pageOpen === "Movies"
-                      ? "header__option header__option_active"
-                      : "header__option"
+                      ? "header__option responsive header__option_active"
+                      : "header__option responsive"
                   }
                   onClick={() => {
                     setIsSavedMoviesOpen(true);
@@ -134,7 +134,7 @@ function Header({
                 </p>
               </nav>
               <button
-                className="header__account-button"
+                className="header__account-button responsive"
                 onClick={() => {
                   setIsMenuShown(false);
                   navigate("/profile");

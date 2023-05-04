@@ -11,7 +11,7 @@ function Portfolio() {
           target="_blank"
           rel="noreferrer"
         >
-          <button className="portfolio__button"></button>
+          <button className="portfolio__button responsive"></button>
         </a>
       </article>
       <article className="portfolio__source">
@@ -21,7 +21,7 @@ function Portfolio() {
           target="_blank"
           rel="noreferrer"
         >
-          <button className="portfolio__button"></button>
+          <button className="portfolio__button responsive"></button>
         </a>
       </article>
       <article className="portfolio__source">
@@ -31,7 +31,7 @@ function Portfolio() {
           target="_blank"
           rel="noreferrer"
         >
-          <button className="portfolio__button"></button>
+          <button className="portfolio__button responsive"></button>
         </a>
       </article>
     </section>

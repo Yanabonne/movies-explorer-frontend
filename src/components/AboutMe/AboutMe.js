@@ -19,7 +19,10 @@ function AboutMe() {
             и user-friendly интерфейсов, люблю сложные задачи и структурный
             подход.
           </p>
-          <a href="https://github.com/Yanabonne" className="me__link">
+          <a
+            href="https://github.com/Yanabonne"
+            className="me__link responsive"
+          >
             Github
           </a>
         </div>
