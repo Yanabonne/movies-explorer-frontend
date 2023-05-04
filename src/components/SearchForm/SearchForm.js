@@ -7,8 +7,12 @@ function SearchForm({ setSearchText, setIsShortFilm, onCardClick }) {
 
   function editSearch(evt) {
     evt.preventDefault();
-    setIsShortFilm(shortFilmsRef.current.checked);
     setSearchText(searchInput);
+    onCardClick();
+  }
+
+  function editShortFilmsSearch() {
+    setIsShortFilm(shortFilmsRef.current.checked);
     onCardClick();
   }
 
@@ -34,7 +38,7 @@ function SearchForm({ setSearchText, setIsShortFilm, onCardClick }) {
         ></button>
       </form>
       <div className="search__option">
-        <label className="search__switch">
+        <label className="search__switch" onClick={editShortFilmsSearch}>
           <input type="checkbox" ref={shortFilmsRef} />
           <span className="search__slider"></span>
         </label>

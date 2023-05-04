@@ -14,7 +14,12 @@ function Header({
   return (
     isHeaderShown && (
       <header className={isLoggedIn ? "header header__logged-in" : "header"}>
-        <img className="header__star" src={star} alt="Star logo" />
+        <img
+          className="header__star"
+          src={star}
+          alt="Star logo"
+          onClick={() => navigate("/")}
+        />
         {isLoggedIn && (
           <nav className="header__nav">
             <p

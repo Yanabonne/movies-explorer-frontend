@@ -14,10 +14,14 @@ function Movies({ isSavedMoviesOpen, onOpen }) {
   }
 
   function searchFilms(card) {
-    return (
-      card.nameRU.toLowerCase().includes(searchText.toLowerCase()) &&
-      (isShortFilm ? card.duration < 52 : true)
-    );
+    if (searchText) {
+      return (
+        card.nameRU.toLowerCase().includes(searchText.toLowerCase()) &&
+        (isShortFilm ? card.duration < 52 : true)
+      );
+    } else {
+      return isShortFilm ? card.duration < 52 : true;
+    }
   }
 
   React.useEffect(() => {
