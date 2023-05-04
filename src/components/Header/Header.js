@@ -87,65 +87,63 @@ function Header({
             </button>
           </div>
         )}
-        {isMenuShown && (
-          <BurgerPopup setIsMenuShown={setIsMenuShown}>
-            <>
-              <nav className="header__nav">
-                <p
-                  className={
-                    pageOpen !== "Main"
-                      ? "header__option responsive"
-                      : "header__option header__option_active responsive"
-                  }
-                  onClick={() => {
-                    navigate("/");
-                    setIsMenuShown(false);
-                  }}
-                >
-                  Главная
-                </p>
-                <p
-                  className={
-                    !isSavedMoviesOpen && pageOpen === "Movies"
-                      ? "header__option header__option_active responsive"
-                      : "header__option responsive"
-                  }
-                  onClick={() => {
-                    setIsSavedMoviesOpen(false);
-                    setIsMenuShown(false);
-                    navigate("/movies");
-                  }}
-                >
-                  Фильмы
-                </p>
-                <p
-                  className={
-                    isSavedMoviesOpen && pageOpen === "Movies"
-                      ? "header__option responsive header__option_active"
-                      : "header__option responsive"
-                  }
-                  onClick={() => {
-                    setIsSavedMoviesOpen(true);
-                    setIsMenuShown(false);
-                    navigate("/saved-movies");
-                  }}
-                >
-                  Сохранённые фильмы
-                </p>
-              </nav>
-              <button
-                className="header__account-button responsive"
+        <BurgerPopup isMenuShown={isMenuShown} setIsMenuShown={setIsMenuShown}>
+          <>
+            <nav className="header__nav">
+              <p
+                className={
+                  pageOpen !== "Main"
+                    ? "header__option responsive"
+                    : "header__option header__option_active responsive"
+                }
                 onClick={() => {
+                  navigate("/");
                   setIsMenuShown(false);
-                  navigate("/profile");
                 }}
               >
-                <div className="header__account-logo"></div>
-                Аккаунт
-              </button>
-            </>
-          </BurgerPopup>
-        )}
+                Главная
+              </p>
+              <p
+                className={
+                  !isSavedMoviesOpen && pageOpen === "Movies"
+                    ? "header__option header__option_active responsive"
+                    : "header__option responsive"
+                }
+                onClick={() => {
+                  setIsSavedMoviesOpen(false);
+                  setIsMenuShown(false);
+                  navigate("/movies");
+                }}
+              >
+                Фильмы
+              </p>
+              <p
+                className={
+                  isSavedMoviesOpen && pageOpen === "Movies"
+                    ? "header__option responsive header__option_active"
+                    : "header__option responsive"
+                }
+                onClick={() => {
+                  setIsSavedMoviesOpen(true);
+                  setIsMenuShown(false);
+                  navigate("/saved-movies");
+                }}
+              >
+                Сохранённые фильмы
+              </p>
+            </nav>
+            <button
+              className="header__account-button responsive"
+              onClick={() => {
+                setIsMenuShown(false);
+                navigate("/profile");
+              }}
+            >
+              <div className="header__account-logo"></div>
+              Аккаунт
+            </button>
+          </>
+        </BurgerPopup>
       </header>
     )
   );

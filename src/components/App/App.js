@@ -12,7 +12,7 @@ import NotFound from "../NotFound/NotFound";
 import ErrorPopup from "../ErrorPopup/ErrorPopup";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isSavedMoviesOpen, setIsSavedMoviesOpen] = React.useState(false);
   const [pageOpen, setPageOpen] = React.useState("Movies");
   const [isFooterShown, setIsFooterShown] = React.useState(true);
