@@ -9,7 +9,7 @@ function Header({
   isSavedMoviesOpen,
   setIsSavedMoviesOpen,
   isHeaderShown,
-  isMainPageOpen,
+  pageOpen,
 }) {
   const navigate = useNavigate();
 
@@ -93,7 +93,7 @@ function Header({
               <nav className="header__nav">
                 <p
                   className={
-                    !isMainPageOpen
+                    pageOpen !== "Main"
                       ? "header__option"
                       : "header__option header__option_active"
                   }
@@ -106,7 +106,7 @@ function Header({
                 </p>
                 <p
                   className={
-                    !isSavedMoviesOpen && !isMainPageOpen
+                    !isSavedMoviesOpen && pageOpen === "Movies"
                       ? "header__option header__option_active"
                       : "header__option"
                   }
@@ -120,7 +120,7 @@ function Header({
                 </p>
                 <p
                   className={
-                    isSavedMoviesOpen && !isMainPageOpen
+                    isSavedMoviesOpen && pageOpen === "Movies"
                       ? "header__option header__option_active"
                       : "header__option"
                   }

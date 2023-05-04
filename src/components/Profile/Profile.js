@@ -3,7 +3,7 @@ import "./Profile.css";
 import "../Register/Register.css";
 import { useNavigate } from "react-router-dom";
 
-function Profile({ user, setIsFooterShown, setIsLoggedIn }) {
+function Profile({ user, setIsFooterShown, setIsLoggedIn, setPageOpen }) {
   const navigate = useNavigate();
   const [isEditProfile, setIsEditProfile] = React.useState(false);
 
@@ -66,8 +66,10 @@ function Profile({ user, setIsFooterShown, setIsLoggedIn }) {
 
   React.useEffect(() => {
     setIsFooterShown(false);
+    setPageOpen("Profile");
     return () => {
       setIsFooterShown(true);
+      setPageOpen("");
     };
   }, []);
 

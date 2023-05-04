@@ -13,7 +13,7 @@ import NotFound from "../NotFound/NotFound";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [isSavedMoviesOpen, setIsSavedMoviesOpen] = React.useState(false);
-  const [isMainPageOpen, setIsMainPageOpen] = React.useState(false);
+  const [pageOpen, setPageOpen] = React.useState("Movies");
   const [isFooterShown, setIsFooterShown] = React.useState(true);
   const [isHeaderShown, setIsHeaderShown] = React.useState(true);
   const [currentUser, setCurrentUser] = React.useState({
@@ -36,17 +36,18 @@ function App() {
         isSavedMoviesOpen={isSavedMoviesOpen}
         setIsSavedMoviesOpen={setIsSavedMoviesOpen}
         isHeaderShown={isHeaderShown}
-        isMainPageOpen={isMainPageOpen}
+        pageOpen={pageOpen}
       />
       <Routes>
-        <Route
-          path="/"
-          element={<Main setIsMainPageOpen={setIsMainPageOpen} />}
-        />
+        <Route path="/" element={<Main setPageOpen={setPageOpen} />} />
         <Route
           path="/movies"
           element={
-            <Movies isSavedMoviesOpen={isSavedMoviesOpen} onOpen={openMovies} />
+            <Movies
+              isSavedMoviesOpen={isSavedMoviesOpen}
+              onOpen={openMovies}
+              setPageOpen={setPageOpen}
+            />
           }
         />
         <Route
@@ -55,6 +56,7 @@ function App() {
             <Movies
               isSavedMoviesOpen={isSavedMoviesOpen}
               onOpen={openSavedMovies}
+              setPageOpen={setPageOpen}
             />
           }
         />
@@ -65,6 +67,7 @@ function App() {
               user={currentUser}
               setIsFooterShown={setIsFooterShown}
               setIsLoggedIn={setIsLoggedIn}
+              setPageOpen={setPageOpen}
             />
           }
         />
