@@ -24,16 +24,15 @@ function Portfolio() {
           <button className="portfolio__button responsive"></button>
         </a>
       </article>
-      <article className="portfolio__source">
+      <a
+        className="portfolio__source"
+        href="https://github.com/Yanabonne/react-mesto-api-full-gha"
+        target="_blank"
+        rel="noreferrer"
+      >
         <p className="portfolio__text">Одностраничное приложение</p>
-        <a
-          href="https://github.com/Yanabonne/react-mesto-api-full-gha"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button className="portfolio__button responsive"></button>
-        </a>
-      </article>
+        <button className="portfolio__button"></button>
+      </a>
     </section>
   );
 }

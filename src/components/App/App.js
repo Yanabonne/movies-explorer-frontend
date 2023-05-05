@@ -12,7 +12,10 @@ import NotFound from "../NotFound/NotFound";
 import ErrorPopup from "../ErrorPopup/ErrorPopup";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  // В приложении есть оба состояния зарегистрированного и незарегистрированного пользователя,
+  // можно выйти из аккаунта через Аккаунт и войти через форму /signin, тогда изменится хэдер.
+  // Фильмы можно добавить в сохраненные и удалить кнопкой лайка
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [isSavedMoviesOpen, setIsSavedMoviesOpen] = React.useState(false);
   const [pageOpen, setPageOpen] = React.useState("Movies");
   const [isFooterShown, setIsFooterShown] = React.useState(true);
@@ -51,7 +54,12 @@ function App() {
         pageOpen={pageOpen}
       />
       <Routes>
-        <Route path="/" element={<Main setPageOpen={setPageOpen} />} />
+        <Route
+          path="/"
+          element={
+            <Main setPageOpen={setPageOpen} setIsLoggedIn={setIsLoggedIn} />
+          }
+        />
         <Route
           path="/movies"
           element={

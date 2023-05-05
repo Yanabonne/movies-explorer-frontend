@@ -1,5 +1,5 @@
 .portfolio {
-  padding: 0 70px 125px;
+  padding: 0 70px 104px;
 }
 
 .portfolio__title {
@@ -17,10 +17,17 @@
   padding: 20px 0 19px;
   border-bottom: 1px solid #e8e8e8;
   gap: 5px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.portfolio__source:hover {
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
 .portfolio__source:last-child {
-  padding-bottom: 0;
   border-bottom: none;
 }
 
@@ -40,7 +47,6 @@
   background-position: center;
   border: none;
   outline: none;
-  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

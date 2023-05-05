@@ -29,7 +29,7 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen }) {
       .getInitialMovies()
       .then((movies) => {
         movies.forEach((movie) => {
-          movie["isLiked"] = false;
+          movie["isLiked"] = Math.random() > 0.5 ? false : true;
         });
         setInitialMovies(movies);
       })

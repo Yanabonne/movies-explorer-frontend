@@ -22,6 +22,8 @@ function AboutMe() {
           <a
             href="https://github.com/Yanabonne"
             className="me__link responsive"
+            target="_blank"
+            rel="noreferrer"
           >
             Github
           </a>
