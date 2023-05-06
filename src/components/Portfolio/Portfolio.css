@@ -1,5 +1,5 @@
 .portfolio {
-  padding: 0 70px 104px;
+  padding: 0 calc((100% - 1280px) / 2) 104px;
 }
 
 .portfolio__title {
@@ -47,6 +47,12 @@
   background-position: center;
   border: none;
   outline: none;
+}
+
+@media screen and (max-width: 1280px) {
+  .portfolio {
+    padding: 0 70px 104px;
+  }
 }
 
 @media screen and (max-width: 768px) {
