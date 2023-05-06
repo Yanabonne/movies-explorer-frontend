@@ -32,13 +32,16 @@ function SearchForm({ setSearchText, setIsShortFilm, onCardClick }) {
           onChange={(e) => updateSearchInput(e.target.value)}
         />
         <button
-          className="search__button"
+          className="search__button responsive"
           onClick={editSearch}
           type="submit"
         ></button>
       </form>
       <div className="search__option">
-        <label className="search__switch" onClick={editShortFilmsSearch}>
+        <label
+          className="search__switch responsive"
+          onClick={editShortFilmsSearch}
+        >
           <input type="checkbox" ref={shortFilmsRef} />
           <span className="search__slider"></span>
         </label>

@@ -51,6 +51,10 @@
   box-sizing: border-box;
 }
 
+.reg__form-input:focus {
+  outline: 1px solid #ff6838;
+}
+
 .reg__form-input_error {
   color: #ee3465;
 }

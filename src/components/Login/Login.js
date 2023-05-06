@@ -76,7 +76,7 @@ function Login({ setIsFooterShown, setIsHeaderShown, setIsLoggedIn }) {
   return (
     <section className="reg">
       <img
-        className="reg__star"
+        className="reg__star responsive"
         alt="Зелёная звёздочка"
         src={star}
         onClick={() => navigate("/")}
