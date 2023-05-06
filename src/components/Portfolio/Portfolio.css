@@ -81,6 +81,7 @@
 
   .portfolio__button {
     width: 18px;
+    background-size: 15px;
     height: 28px;
   }
 }

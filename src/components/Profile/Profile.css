@@ -75,6 +75,9 @@
 @media screen and (max-width: 480px) {
   .profile {
     padding-top: 70px;
+    padding-bottom: 30px;
+    min-height: calc(100vh - 80px);
+    box-sizing: border-box;
   }
 
   .profile__container {
@@ -87,20 +90,12 @@
 
   .profile__edit {
     font-size: 12px;
-    position: fixed;
-    bottom: 75px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 0;
+    padding-top: 60px;
+    margin: auto 0 0;
   }
 
   .profile__exit {
     font-size: 12px;
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 0;
   }
 
   .profile__container:last-of-type {

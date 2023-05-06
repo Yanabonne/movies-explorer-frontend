@@ -102,8 +102,8 @@ function Profile({ user, setIsFooterShown, setIsLoggedIn, setPageOpen }) {
     </section>
   ) : (
     <section className="reg">
-      <h1 className="reg__title">Введите новые данные</h1>
-      <form className="reg__form" onSubmit={onSubmitForm}>
+      <h1 className="reg__title reg__title_edit">Введите новые данные</h1>
+      <form className="reg__form reg__form_edit" onSubmit={onSubmitForm}>
         <h2 className="reg__form-title">Имя</h2>
         <input
           type="text"

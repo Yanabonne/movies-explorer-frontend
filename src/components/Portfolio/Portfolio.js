@@ -29,7 +29,7 @@ function Portfolio() {
         rel="noreferrer"
       >
         <p className="portfolio__text">Одностраничное приложение</p>
-        <button className="portfolio__button"></button>
+        <button className="portfolio__button responsive"></button>
       </a>
     </section>
   );

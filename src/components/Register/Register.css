@@ -1,11 +1,13 @@
 .reg {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 0 auto;
   width: 396px;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 30px 0;
+  box-sizing: border-box;
 }
 
 .reg__star {
@@ -98,10 +100,10 @@
 
 @media screen and (max-width: 480px) {
   .reg {
-    height: 100vh;
     width: 260px;
     align-items: center;
-    margin-top: 56px;
+    padding-top: 56px;
+    margin: 0 auto;
   }
 
   .reg__title {
@@ -109,22 +111,31 @@
     padding: 50px 0 80px;
   }
 
+  .reg__title_edit {
+    padding-top: 0;
+  }
+
+  .reg__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    min-height: calc(100vh - 300px);
+  }
+
+  .reg__form_edit {
+    min-height: calc(100vh - 400px);
+  }
+
   .reg__button {
-    margin: 0;
+    margin: auto 0 14px;
     padding: 15px;
     font-size: 12px;
-    position: absolute;
-    bottom: 104px;
-    left: 50%;
-    transform: translateX(-50%);
+    display: block;
   }
 
   .reg__text {
     margin: 0;
     font-size: 12px;
-    position: absolute;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
   }
 }
