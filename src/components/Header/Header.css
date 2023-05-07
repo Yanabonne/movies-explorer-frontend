@@ -1,0 +1,161 @@
+.header {
+  background-color: #465dff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 18px calc((100% - 1280px) / 2);
+  position: relative;
+}
+
+.header__logged-in {
+  background-color: white;
+}
+
+.header__star {
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+}
+
+.header__buttons {
+  display: flex;
+  gap: 30px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header__button {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.header__button_signup {
+  color: white;
+}
+
+.header__button_signin {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 8px 20px;
+  background: #2be080;
+  border-radius: 3px;
+}
+
+.header__nav {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-left: 65px;
+}
+
+.header__option {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.38;
+  cursor: pointer;
+  margin: 0;
+}
+
+.header__option_active {
+  font-weight: 500;
+}
+
+.header__account-button {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  border: 2px solid rgba(170, 170, 170, 0.2);
+  border-radius: 50px;
+  padding: 8px 12px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.header__account-logo {
+  background-image: url("../../images/account.svg");
+  width: 12px;
+  height: 14px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header__burger {
+  width: 44px;
+  height: 44px;
+  background: none;
+  background-image: url("../../images/burger.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  outline: none;
+  border: none;
+  display: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1350px) {
+  .header {
+    padding: 18px 70px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 18px 30px;
+    box-sizing: border-box;
+  }
+
+  .header__no-display {
+    display: none;
+  }
+
+  .header__burger {
+    display: block;
+  }
+
+  .header__nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    margin-left: 0;
+  }
+
+  .header__option {
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .header__option_active {
+    text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 18px 14px;
+  }
+
+  .header__buttons {
+    gap: 14px;
+  }
+
+  .header__button {
+    font-size: 11px;
+  }
+
+  .header__button_signin {
+    padding: 5px 12px;
+  }
+
+  .header__nav {
+    gap: 24px;
+  }
+}

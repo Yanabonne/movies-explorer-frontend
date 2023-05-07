@@ -1,0 +1,67 @@
+.card {
+  background: #fdfdfd;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card__description {
+  padding: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card__name {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.card__length {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.38;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+.card__picture {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card__button {
+  outline: none;
+  border: none;
+  background-color: #f9f9f9;
+  border-radius: 30px;
+  padding: 9px 15px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 0.92;
+  margin: 27px 0;
+  cursor: pointer;
+  width: 100px;
+  height: 29px;
+}
+
+.card__button_liked {
+  background-color: #ee3465;
+  background-image: url("../../images/check.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card__button_delete {
+  background-image: url("../../images/cross.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}

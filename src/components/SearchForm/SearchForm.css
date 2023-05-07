@@ -1,0 +1,144 @@
+.search {
+  padding: 60px calc((100% - 1280px) / 2) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 41px;
+}
+
+.search__search {
+  background-color: #f9f9f9;
+  border-radius: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 6px 6px 22px;
+  box-sizing: border-box;
+}
+
+.search__input {
+  width: calc(100% - 34px);
+  border: none;
+  outline: none;
+  background: none;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.31;
+}
+
+.search__button {
+  background-color: #ff6838;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-image: url("../../images/search-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.search__option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding-bottom: 70px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.search__switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+}
+
+.search__switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.search__slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f9f9f9;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.search__slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2.2px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .search__slider {
+  background-color: #2be080;
+}
+
+input:checked + .search__slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+.search__text {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+}
+
+@media screen and (max-width: 1350px) {
+  .search {
+    padding: 60px 70px 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search {
+    padding: 80px 30px 0;
+    gap: 41px;
+  }
+
+  .search__option {
+    padding-bottom: 51px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .search {
+    padding: 80px 14px 0;
+    gap: 41px;
+  }
+
+  .search__option {
+    padding-bottom: 50px;
+  }
+
+  .search__text {
+    font-size: 11px;
+  }
+
+  .search__input {
+    font-size: 11px;
+  }
+}
