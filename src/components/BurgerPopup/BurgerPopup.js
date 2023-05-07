@@ -16,7 +16,11 @@ function BurgerPopup({ children, setIsMenuShown, isMenuShown }) {
         {children}
       </div>
       <button
-        className={isMenuShown ? "menu__cross" : "menu__cross menu__no-display"}
+        className={
+          isMenuShown
+            ? "menu__cross responsive"
+            : "menu__cross menu__no-display"
+        }
         onClick={() => setIsMenuShown(false)}
       ></button>
     </div>
