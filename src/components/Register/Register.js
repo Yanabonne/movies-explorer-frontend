@@ -12,11 +12,9 @@ function Register({ setIsFooterShown, setIsHeaderShown }) {
   const [emailInputError, setEmailInputError] = React.useState("");
 
   const passwordRef = React.useRef();
-  const [passwordInput, setPasswordInput] = React.useState("hey");
-  const [isPasswordValid, setIsPasswordValid] = React.useState(false);
-  const [passwordInputError, setPasswordInputError] = React.useState(
-    "Минимально допустимое количество символов: 8. Длина текста сейчас: 3."
-  );
+  const [passwordInput, setPasswordInput] = React.useState("");
+  const [isPasswordValid, setIsPasswordValid] = React.useState(true);
+  const [passwordInputError, setPasswordInputError] = React.useState("");
 
   const nameRef = React.useRef();
   const [nameInput, setNameInput] = React.useState("");

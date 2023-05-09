@@ -10,10 +10,8 @@ import Portfolio from "../Portfolio/Portfolio";
 function Main({ setPageOpen, setIsLoggedIn }) {
   React.useEffect(() => {
     setPageOpen("Main");
-    setIsLoggedIn(false);
     return () => {
       setPageOpen("");
-      setIsLoggedIn(true);
     };
   }, []);
 

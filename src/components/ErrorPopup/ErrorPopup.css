@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 15px;
   right: 15px;
-  padding: 10px;
+  padding: 15px;
   border-radius: 10px;
   border: solid 1px #ee3465;
   width: 200px;
@@ -13,8 +13,8 @@
 .error__text {
   width: 100%;
   font-weight: 400;
-  font-size: 12px;
-  line-height: 1.2;
+  font-size: 14px;
+  line-height: 1.5;
   margin: 0;
 }
 

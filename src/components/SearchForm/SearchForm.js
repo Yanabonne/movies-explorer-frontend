@@ -1,11 +1,19 @@
 import React from "react";
 import "./SearchForm.css";
 
-function SearchForm({ setSearchText, setIsShortFilm, onCardClick }) {
+function SearchForm({
+  setSearchText,
+  setIsShortFilm,
+  onCardClick,
+  showErrorPopup,
+}) {
   const [searchInput, setSearchInput] = React.useState();
   const shortFilmsRef = React.useRef();
 
   function editSearch(evt) {
+    if (!searchInput) {
+      showErrorPopup("Нужно ввести ключевое слово.");
+    }
     evt.preventDefault();
     setSearchText(searchInput);
     onCardClick();
