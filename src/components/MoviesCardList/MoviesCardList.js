@@ -5,15 +5,12 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 function MoviesCardList({
   movies,
   isSavedMoviesOpen,
-  onCardClick,
   searchFilms,
+  deleteMovie,
+  addMovie,
 }) {
   const [showedCardsNumber, setShowedCardsNumber] = React.useState(12);
-  const cardNumber = isSavedMoviesOpen
-    ? movies
-        .filter((card) => editSearch(card))
-        .filter((card) => card.isLiked === true).length
-    : movies.filter((card) => editSearch(card)).length;
+  const cardNumber = movies.filter((card) => editSearch(card)).length;
 
   function onButtonClick() {
     setShowedCardsNumber(showedCardsNumber + 12);
@@ -35,7 +32,8 @@ function MoviesCardList({
                 card={card}
                 key={card.id}
                 isSavedMoviesOpen={isSavedMoviesOpen}
-                onSavedCardClick={onCardClick}
+                deleteMovie={deleteMovie}
+                addMovie={addMovie}
               />
             ))}
         {isSavedMoviesOpen &&
@@ -46,9 +44,10 @@ function MoviesCardList({
             .map((card) => (
               <MoviesCard
                 card={card}
-                key={card.id}
+                key={card.movieId}
                 isSavedMoviesOpen={isSavedMoviesOpen}
-                onSavedCardClick={onCardClick}
+                deleteMovie={deleteMovie}
+                addMovie={addMovie}
               />
             ))}
       </div>

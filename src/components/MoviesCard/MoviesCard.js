@@ -1,14 +1,12 @@
 import React from "react";
 import "./MoviesCard.css";
 
-function MoviesCard({ card, onSavedCardClick, isSavedMoviesOpen }) {
+function MoviesCard({ card, isSavedMoviesOpen, deleteMovie, addMovie }) {
   function onCardClick() {
     if (card.isLiked) {
-      card.isLiked = false;
-      onSavedCardClick();
+      deleteMovie(card);
     } else {
-      card.isLiked = true;
-      onSavedCardClick();
+      addMovie(card);
     }
   }
 
@@ -21,7 +19,11 @@ function MoviesCard({ card, onSavedCardClick, isSavedMoviesOpen }) {
       <img
         className="card__picture"
         alt="Постер Фильма"
-        src={`https://api.nomoreparties.co${card.image.url}`}
+        src={
+          isSavedMoviesOpen
+            ? card.image
+            : `https://api.nomoreparties.co${card.image.url}`
+        }
       />
       <button
         className={

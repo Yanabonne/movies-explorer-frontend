@@ -12,6 +12,7 @@ import NotFound from "../NotFound/NotFound";
 import ErrorPopup from "../ErrorPopup/ErrorPopup";
 import { register, authorize, getUserContent } from "../../utils/Auth";
 import api from "../../utils/MainApi";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -98,88 +99,90 @@ function App() {
 
   return (
     <div className="app">
-      <Header
-        isLoggedIn={isLoggedIn}
-        isSavedMoviesOpen={isSavedMoviesOpen}
-        setIsSavedMoviesOpen={setIsSavedMoviesOpen}
-        isHeaderShown={isHeaderShown}
-        pageOpen={pageOpen}
-      />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Main setPageOpen={setPageOpen} setIsLoggedIn={setIsLoggedIn} />
-          }
+      <CurrentUserContext.Provider value={currentUser}>
+        <Header
+          isLoggedIn={isLoggedIn}
+          isSavedMoviesOpen={isSavedMoviesOpen}
+          setIsSavedMoviesOpen={setIsSavedMoviesOpen}
+          isHeaderShown={isHeaderShown}
+          pageOpen={pageOpen}
         />
-        <Route
-          path="/movies"
-          element={
-            <Movies
-              isSavedMoviesOpen={isSavedMoviesOpen}
-              onOpen={openMovies}
-              setPageOpen={setPageOpen}
-              showErrorPopup={showErrorPopup}
-            />
-          }
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Main setPageOpen={setPageOpen} setIsLoggedIn={setIsLoggedIn} />
+            }
+          />
+          <Route
+            path="/movies"
+            element={
+              <Movies
+                isSavedMoviesOpen={isSavedMoviesOpen}
+                onOpen={openMovies}
+                setPageOpen={setPageOpen}
+                showErrorPopup={showErrorPopup}
+              />
+            }
+          />
+          <Route
+            path="/saved-movies"
+            element={
+              <Movies
+                isSavedMoviesOpen={isSavedMoviesOpen}
+                onOpen={openSavedMovies}
+                showErrorPopup={showErrorPopup}
+                setPageOpen={setPageOpen}
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                user={currentUser}
+                setIsFooterShown={setIsFooterShown}
+                setIsLoggedIn={setIsLoggedIn}
+                setPageOpen={setPageOpen}
+              />
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <Register
+                setIsFooterShown={setIsFooterShown}
+                setIsHeaderShown={setIsHeaderShown}
+                handleSubmit={handleRegistration}
+              />
+            }
+          />
+          <Route
+            path="/signin"
+            element={
+              <Login
+                setIsFooterShown={setIsFooterShown}
+                setIsHeaderShown={setIsHeaderShown}
+                handleSubmit={handleAuthorization}
+              />
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <NotFound
+                setIsFooterShown={setIsFooterShown}
+                setIsHeaderShown={setIsHeaderShown}
+              />
+            }
+          />
+        </Routes>
+        <Footer isFooterShown={isFooterShown} />
+        <ErrorPopup
+          isErrorPopupShown={isErrorPopupShown}
+          errorPopupText={errorPopupText}
         />
-        <Route
-          path="/saved-movies"
-          element={
-            <Movies
-              isSavedMoviesOpen={isSavedMoviesOpen}
-              onOpen={openSavedMovies}
-              showErrorPopup={showErrorPopup}
-              setPageOpen={setPageOpen}
-            />
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <Profile
-              user={currentUser}
-              setIsFooterShown={setIsFooterShown}
-              setIsLoggedIn={setIsLoggedIn}
-              setPageOpen={setPageOpen}
-            />
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <Register
-              setIsFooterShown={setIsFooterShown}
-              setIsHeaderShown={setIsHeaderShown}
-              handleSubmit={handleRegistration}
-            />
-          }
-        />
-        <Route
-          path="/signin"
-          element={
-            <Login
-              setIsFooterShown={setIsFooterShown}
-              setIsHeaderShown={setIsHeaderShown}
-              handleSubmit={handleAuthorization}
-            />
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <NotFound
-              setIsFooterShown={setIsFooterShown}
-              setIsHeaderShown={setIsHeaderShown}
-            />
-          }
-        />
-      </Routes>
-      <Footer isFooterShown={isFooterShown} />
-      <ErrorPopup
-        isErrorPopupShown={isErrorPopupShown}
-        errorPopupText={errorPopupText}
-      />
+      </CurrentUserContext.Provider>
     </div>
   );
 }
