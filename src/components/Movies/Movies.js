@@ -1,7 +1,7 @@
 import React from "react";
 import "./Movies.css";
 import SearchForm from "../SearchForm/SearchForm";
-import apiInintialMovies from "../../utils/apiInintialMovies";
+import apiInintialMovies from "../../utils/MoviesApi";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {

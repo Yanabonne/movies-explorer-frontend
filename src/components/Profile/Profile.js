@@ -94,6 +94,7 @@ function Profile({ user, setIsFooterShown, setIsLoggedIn, setPageOpen }) {
         className="profile__exit responsive"
         onClick={() => {
           navigate("/signin");
+          localStorage.removeItem("token");
           setIsLoggedIn(false);
         }}
       >

@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Main from "../Main/Main";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -10,6 +10,8 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
 import ErrorPopup from "../ErrorPopup/ErrorPopup";
+import { register, authorize, getUserContent } from "../../utils/Auth";
+import api from "../../utils/MainApi";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -19,10 +21,8 @@ function App() {
   const [isHeaderShown, setIsHeaderShown] = React.useState(true);
   const [isErrorPopupShown, setIsErrorPopupShown] = React.useState();
   const [errorPopupText, setErrorPopupText] = React.useState("");
-  const [currentUser, setCurrentUser] = React.useState({
-    name: "Jane Doe",
-    email: "janedoe@gmail.com",
-  });
+  const [currentUser, setCurrentUser] = React.useState({});
+  const navigate = useNavigate();
 
   function openMovies() {
     setIsSavedMoviesOpen(false);
@@ -40,6 +40,61 @@ function App() {
       setIsErrorPopupShown(false);
     }, 5000);
   }
+
+  function handleRegistration(name, password, email) {
+    register(name, password, email)
+      .then(() => {
+        navigate("/signin");
+      })
+      .catch((err) => {
+        showErrorPopup(err);
+      });
+  }
+
+  function handleAuthorization(password, email) {
+    authorize(password, email)
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("token", res.token);
+          setIsLoggedIn(true);
+          setCurrentUser(res.data);
+          navigate("/movies");
+        }
+      })
+      .catch((err) => {
+        showErrorPopup(err);
+      });
+  }
+
+  function tokenCheck() {
+    const token = localStorage.getItem("token");
+    if (token) {
+      getUserContent(token)
+        .then((res) => {
+          setCurrentUser(res.data);
+          setIsLoggedIn(true);
+          navigate("/movies");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      api
+        .getUserInfo()
+        .then((res) => {
+          setCurrentUser(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [isLoggedIn]);
+
+  React.useEffect(() => {
+    tokenCheck();
+  }, []);
 
   return (
     <div className="app">
@@ -96,6 +151,7 @@ function App() {
             <Register
               setIsFooterShown={setIsFooterShown}
               setIsHeaderShown={setIsHeaderShown}
+              handleSubmit={handleRegistration}
             />
           }
         />
@@ -105,7 +161,7 @@ function App() {
             <Login
               setIsFooterShown={setIsFooterShown}
               setIsHeaderShown={setIsHeaderShown}
-              setIsLoggedIn={setIsLoggedIn}
+              handleSubmit={handleAuthorization}
             />
           }
         />
