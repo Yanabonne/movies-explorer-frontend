@@ -2,15 +2,16 @@ import React from "react";
 import "./Profile.css";
 import "../Register/Register.css";
 import { useNavigate } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Profile({
-  user,
   setIsFooterShown,
   setIsLoggedIn,
   setPageOpen,
   handleUserInfoChange,
 }) {
   const navigate = useNavigate();
+  const user = React.useContext(CurrentUserContext);
   const [isEditProfile, setIsEditProfile] = React.useState(false);
 
   const emailRef = React.useRef();

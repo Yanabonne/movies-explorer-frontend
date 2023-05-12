@@ -6,27 +6,40 @@ function SearchForm({
   setIsShortFilm,
   onCardClick,
   showErrorPopup,
+  setIsSearched,
 }) {
-  const [searchInput, setSearchInput] = React.useState();
+  const [searchInput, setSearchInput] = React.useState(
+    localStorage.getItem("searchText") ? localStorage.getItem("searchText") : ""
+  );
   const shortFilmsRef = React.useRef();
 
   function editSearch(evt) {
+    evt.preventDefault();
     if (!searchInput) {
       showErrorPopup("Нужно ввести ключевое слово.");
+    } else {
+      setIsSearched(true);
+      setSearchText(searchInput);
+      onCardClick();
     }
-    evt.preventDefault();
-    setSearchText(searchInput);
-    onCardClick();
   }
 
   function editShortFilmsSearch() {
     setIsShortFilm(shortFilmsRef.current.checked);
+    localStorage.setItem("isShortFilm", shortFilmsRef.current.checked);
     onCardClick();
   }
 
   function updateSearchInput(si) {
     setSearchInput(si);
   }
+
+  React.useEffect(() => {
+    if (localStorage.getItem("isShortFilm")) {
+      shortFilmsRef.current.checked =
+        localStorage.getItem("isShortFilm") === "true";
+    }
+  }, []);
 
   return (
     <section className="search">

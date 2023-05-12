@@ -9,6 +9,7 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
   const [initialMovies, setInitialMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [searchText, setSearchText] = React.useState("");
+  const [isSearched, setIsSearched] = React.useState(false);
   const [isShortFilm, setIsShortFilm] = React.useState(false);
 
   function onCardClick() {
@@ -18,11 +19,15 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
 
   function searchFilms(card) {
     if (searchText) {
+      localStorage.setItem("searchText", searchText);
+      localStorage.setItem("isShortFilm", isShortFilm);
+      // localStorage.setItem("films", JSON.stringify(initialMovies));
       return (
         card.nameRU.toLowerCase().includes(searchText.toLowerCase()) &&
         (isShortFilm ? card.duration < 40 : true)
       );
     } else {
+      localStorage.setItem("isShortFilm", isShortFilm);
       return isShortFilm ? card.duration < 40 : true;
     }
   }
@@ -61,6 +66,15 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
   }
 
   React.useEffect(() => {
+    if (localStorage.getItem("searchText")) {
+      setIsSearched(true);
+      setIsShortFilm(localStorage.getItem("isShortFilm") === "true");
+      setSearchText(localStorage.getItem("searchText"));
+      onCardClick();
+    }
+  }, []);
+
+  React.useEffect(() => {
     api
       .getInitialMovies()
       .then((res) => {
@@ -70,6 +84,9 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
         });
         setSavedMovies(movies);
 
+        // if (localStorage.getItem("films")) {
+        //   setInitialMovies(JSON.parse(localStorage.getItem("films")));
+        // } else {
         apiInintialMovies
           .getInitialMovies()
           .then((films) => {
@@ -84,9 +101,20 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
             });
             setInitialMovies(films);
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.log(err);
+            showErrorPopup(
+              "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+            );
+          });
+        // }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        showErrorPopup(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+        );
+      });
     onOpen();
     setPageOpen("Movies");
   }, [isSavedMoviesOpen]);
@@ -98,9 +126,12 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
         setIsShortFilm={setIsShortFilm}
         onCardClick={onCardClick}
         showErrorPopup={showErrorPopup}
+        setIsSearched={setIsSearched}
       />
       <MoviesCardList
-        movies={isSavedMoviesOpen ? savedMovies : initialMovies}
+        movies={
+          isSearched ? (isSavedMoviesOpen ? savedMovies : initialMovies) : []
+        }
         isSavedMoviesOpen={isSavedMoviesOpen}
         onCardClick={onCardClick}
         searchFilms={searchFilms}

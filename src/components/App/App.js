@@ -152,7 +152,6 @@ function App() {
             path="/profile"
             element={
               <Profile
-                user={currentUser}
                 setIsFooterShown={setIsFooterShown}
                 setIsLoggedIn={setIsLoggedIn}
                 setPageOpen={setPageOpen}
