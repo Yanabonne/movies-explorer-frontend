@@ -42,6 +42,18 @@ function App() {
     }, 5000);
   }
 
+  function handleUserInfoChange(data) {
+    api
+      .updateUserInfo(data)
+      .then((res) => {
+        setCurrentUser(res.data);
+        navigate("/profile");
+      })
+      .catch((err) => {
+        showErrorPopup(err);
+      });
+  }
+
   function handleRegistration(name, password, email) {
     register(name, password, email)
       .then(() => {
@@ -144,6 +156,7 @@ function App() {
                 setIsFooterShown={setIsFooterShown}
                 setIsLoggedIn={setIsLoggedIn}
                 setPageOpen={setPageOpen}
+                handleUserInfoChange={handleUserInfoChange}
               />
             }
           />

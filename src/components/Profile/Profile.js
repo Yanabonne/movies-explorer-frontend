@@ -3,17 +3,23 @@ import "./Profile.css";
 import "../Register/Register.css";
 import { useNavigate } from "react-router-dom";
 
-function Profile({ user, setIsFooterShown, setIsLoggedIn, setPageOpen }) {
+function Profile({
+  user,
+  setIsFooterShown,
+  setIsLoggedIn,
+  setPageOpen,
+  handleUserInfoChange,
+}) {
   const navigate = useNavigate();
   const [isEditProfile, setIsEditProfile] = React.useState(false);
 
   const emailRef = React.useRef();
-  const [emailInput, setEmailInput] = React.useState("");
+  const [emailInput, setEmailInput] = React.useState(user.email);
   const [isEmailValid, setIsEmailValid] = React.useState(true);
   const [emailInputError, setEmailInputError] = React.useState("");
 
   const nameRef = React.useRef();
-  const [nameInput, setNameInput] = React.useState("");
+  const [nameInput, setNameInput] = React.useState(user.name);
   const [isNameValid, setIsNameValid] = React.useState(true);
   const [nameInputError, setNameInputError] = React.useState("");
 
@@ -60,6 +66,7 @@ function Profile({ user, setIsFooterShown, setIsLoggedIn, setPageOpen }) {
   function onSubmitForm(e) {
     e.preventDefault();
     if (validateEmail() & validateName()) {
+      handleUserInfoChange({ name: nameInput, email: emailInput });
       setIsEditProfile(false);
     }
   }
