@@ -153,6 +153,7 @@ function Profile({
         <button
           className="reg__button reg__button_login responsive"
           type="submit"
+          disabled={isEmailValid && isNameValid ? false : true}
         >
           Сохранить
         </button>

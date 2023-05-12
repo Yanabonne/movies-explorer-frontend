@@ -16,15 +16,22 @@ function MoviesCard({ card, isSavedMoviesOpen, deleteMovie, addMovie }) {
         <p className="card__name">{card.nameRU}</p>
         <p className="card__length">{card.duration} минут</p>
       </div>
-      <img
-        className="card__picture"
-        alt="Постер Фильма"
-        src={
-          isSavedMoviesOpen
-            ? card.image
-            : `https://api.nomoreparties.co${card.image.url}`
-        }
-      />
+      <a
+        className="card__trailer responsive"
+        href={isSavedMoviesOpen ? card.trailer : card.trailerLink}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img
+          className="card__picture"
+          alt="Постер Фильма"
+          src={
+            isSavedMoviesOpen
+              ? card.image
+              : `https://api.nomoreparties.co${card.image.url}`
+          }
+        />
+      </a>
       <button
         className={
           !isSavedMoviesOpen

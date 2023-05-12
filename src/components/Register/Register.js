@@ -8,17 +8,17 @@ function Register({ setIsFooterShown, setIsHeaderShown, handleSubmit }) {
 
   const emailRef = React.useRef();
   const [emailInput, setEmailInput] = React.useState("");
-  const [isEmailValid, setIsEmailValid] = React.useState(true);
+  const [isEmailValid, setIsEmailValid] = React.useState(false);
   const [emailInputError, setEmailInputError] = React.useState("");
 
   const passwordRef = React.useRef();
   const [passwordInput, setPasswordInput] = React.useState("");
-  const [isPasswordValid, setIsPasswordValid] = React.useState(true);
+  const [isPasswordValid, setIsPasswordValid] = React.useState(false);
   const [passwordInputError, setPasswordInputError] = React.useState("");
 
   const nameRef = React.useRef();
   const [nameInput, setNameInput] = React.useState("");
-  const [isNameValid, setIsNameValid] = React.useState(true);
+  const [isNameValid, setIsNameValid] = React.useState(false);
   const [nameInputError, setNameInputError] = React.useState("");
 
   function updateEmail(email) {
@@ -161,7 +161,13 @@ function Register({ setIsFooterShown, setIsHeaderShown, handleSubmit }) {
           onChange={(e) => updatePassword(e.target.value)}
         />
         <span className="reg__input-error">{passwordInputError}</span>
-        <button className="reg__button responsive" type="submit">
+        <button
+          className="reg__button responsive"
+          type="submit"
+          disabled={
+            isEmailValid && isNameValid && isPasswordValid ? false : true
+          }
+        >
           Зарегистрироваться
         </button>
       </form>
