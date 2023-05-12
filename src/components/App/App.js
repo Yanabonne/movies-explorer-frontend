@@ -13,6 +13,7 @@ import ErrorPopup from "../ErrorPopup/ErrorPopup";
 import { register, authorize, getUserContent } from "../../utils/Auth";
 import api from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -129,33 +130,39 @@ function App() {
           <Route
             path="/movies"
             element={
-              <Movies
+              <ProtectedRoute
                 isSavedMoviesOpen={isSavedMoviesOpen}
                 onOpen={openMovies}
                 setPageOpen={setPageOpen}
                 showErrorPopup={showErrorPopup}
+                component={Movies}
+                isLoggedIn={isLoggedIn}
               />
             }
           />
           <Route
             path="/saved-movies"
             element={
-              <Movies
+              <ProtectedRoute
                 isSavedMoviesOpen={isSavedMoviesOpen}
                 onOpen={openSavedMovies}
                 showErrorPopup={showErrorPopup}
                 setPageOpen={setPageOpen}
+                component={Movies}
+                isLoggedIn={isLoggedIn}
               />
             }
           />
           <Route
             path="/profile"
             element={
-              <Profile
+              <ProtectedRoute
                 setIsFooterShown={setIsFooterShown}
                 setIsLoggedIn={setIsLoggedIn}
                 setPageOpen={setPageOpen}
                 handleUserInfoChange={handleUserInfoChange}
+                element={Profile}
+                isLoggedIn={isLoggedIn}
               />
             }
           />
