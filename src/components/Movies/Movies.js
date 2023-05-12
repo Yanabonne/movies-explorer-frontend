@@ -21,7 +21,6 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
     if (searchText) {
       localStorage.setItem("searchText", searchText);
       localStorage.setItem("isShortFilm", isShortFilm);
-      // localStorage.setItem("films", JSON.stringify(initialMovies));
       return (
         card.nameRU.toLowerCase().includes(searchText.toLowerCase()) &&
         (isShortFilm ? card.duration < 40 : true)
@@ -84,9 +83,6 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
         });
         setSavedMovies(movies);
 
-        // if (localStorage.getItem("films")) {
-        //   setInitialMovies(JSON.parse(localStorage.getItem("films")));
-        // } else {
         apiInintialMovies
           .getInitialMovies()
           .then((films) => {
@@ -107,7 +103,6 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
               "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
             );
           });
-        // }
       })
       .catch((err) => {
         console.log(err);
@@ -129,14 +124,13 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
         setIsSearched={setIsSearched}
       />
       <MoviesCardList
-        movies={
-          isSearched ? (isSavedMoviesOpen ? savedMovies : initialMovies) : []
-        }
+        movies={isSavedMoviesOpen ? savedMovies : initialMovies}
         isSavedMoviesOpen={isSavedMoviesOpen}
         onCardClick={onCardClick}
         searchFilms={searchFilms}
         deleteMovie={deleteMovie}
         addMovie={addMovie}
+        isSearched={isSearched}
       />
     </main>
   );
