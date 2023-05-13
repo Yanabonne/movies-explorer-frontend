@@ -1,5 +1,6 @@
 import React from "react";
 import "./MoviesCard.css";
+import { changeMinutesWordForm } from "../../utils/utils";
 
 function MoviesCard({ card, isSavedMoviesOpen, deleteMovie, addMovie }) {
   function onCardClick() {
@@ -14,7 +15,9 @@ function MoviesCard({ card, isSavedMoviesOpen, deleteMovie, addMovie }) {
     <article className="card">
       <div className="card__description">
         <p className="card__name">{card.nameRU}</p>
-        <p className="card__length">{card.duration} минут</p>
+        <p className="card__length">{`${card.duration} ${changeMinutesWordForm(
+          card.duration
+        )}`}</p>
       </div>
       <a
         className="card__trailer responsive"
