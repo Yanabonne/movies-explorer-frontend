@@ -12,16 +12,53 @@ function MoviesCardList({
   isSearched,
 }) {
   const [showedCardsNumber, setShowedCardsNumber] = React.useState(12);
+  const [addedCardsNumber, setAddedCardsNumber] = React.useState(3);
+  const [isResizing, setIsResizing] = React.useState(false);
   const gridRef = React.useRef();
   const cardNumber = movies.filter((card) => editSearch(card)).length;
 
   function onButtonClick() {
-    setShowedCardsNumber(showedCardsNumber + 12);
+    setShowedCardsNumber(showedCardsNumber + addedCardsNumber);
   }
 
   function editSearch(card) {
     return searchFilms(card);
   }
+
+  function setCardsParameters() {
+    if (!isResizing) {
+      setIsResizing(true);
+    }
+  }
+
+  function resizeContent() {
+    if (window.innerWidth < 650) {
+      setShowedCardsNumber(5);
+      setAddedCardsNumber(2);
+    } else if (window.innerWidth < 980) {
+      setShowedCardsNumber(8);
+      setAddedCardsNumber(2);
+    } else {
+      setShowedCardsNumber(12);
+      setAddedCardsNumber(3);
+    }
+  }
+
+  React.useEffect(() => {
+    isResizing &&
+      setTimeout(() => {
+        resizeContent();
+        setIsResizing(false);
+      }, 1000);
+  }, [isResizing]);
+
+  React.useEffect(() => {
+    window.addEventListener("resize", setCardsParameters);
+    resizeContent();
+    return () => {
+      window.removeEventListener("resize", setCardsParameters);
+    };
+  }, []);
 
   return (
     <section className="movies">
