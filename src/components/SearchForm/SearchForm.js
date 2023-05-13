@@ -6,7 +6,6 @@ function SearchForm({
   setIsShortFilm,
   onCardClick,
   showErrorPopup,
-  setIsSearched,
   getFilms,
 }) {
   const [searchInput, setSearchInput] = React.useState(
@@ -17,9 +16,8 @@ function SearchForm({
   function editSearch(evt) {
     evt.preventDefault();
     if (!searchInput) {
-      showErrorPopup("Нужно ввести ключевое слово.");
+      showErrorPopup("Ошибка: Нужно ввести ключевое слово.");
     } else {
-      setIsSearched(true);
       setSearchText(searchInput);
       localStorage.setItem("searchText", searchInput);
       getFilms();

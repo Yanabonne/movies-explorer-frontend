@@ -13,7 +13,7 @@ class Api {
   _getResponseData(res) {
     return res.ok
       ? res.json()
-      : res.json().then((res) => Promise.reject(res.message));
+      : res.json().then((res) => Promise.reject(`Ошибка: ${res.message}`));
   }
 
   getUserInfo() {

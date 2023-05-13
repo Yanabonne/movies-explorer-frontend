@@ -3,7 +3,7 @@ const BASE_URL = "http://localhost:3000";
 const getResponse = (res) => {
   return res.ok
     ? res.json()
-    : res.json().then((res) => Promise.reject(res.message));
+    : res.json().then((res) => Promise.reject(`Ошибка: ${res.message}`));
 };
 
 export const register = (name, password, email) => {

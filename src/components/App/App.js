@@ -49,6 +49,7 @@ function App() {
       .then((res) => {
         setCurrentUser(res.data);
         navigate("/profile");
+        showErrorPopup("Данные были успешно изменены");
       })
       .catch((err) => {
         showErrorPopup(err);
@@ -212,6 +213,7 @@ function App() {
         <ErrorPopup
           isErrorPopupShown={isErrorPopupShown}
           errorPopupText={errorPopupText}
+          setIsErrorPopupShown={setIsErrorPopupShown}
         />
       </CurrentUserContext.Provider>
     </div>

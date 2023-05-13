@@ -62,6 +62,7 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
   }
 
   function getFilms() {
+    setIsSearched(false);
     api
       .getInitialMovies()
       .then((res) => {
@@ -103,7 +104,7 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
             .catch((err) => {
               console.log(err);
               showErrorPopup(
-                "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+                "Ошибка: Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
               );
             });
         }
@@ -111,9 +112,10 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
       .catch((err) => {
         console.log(err);
         showErrorPopup(
-          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+          "Ошибка: Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
         );
-      });
+      })
+      .finally(() => setIsSearched(true));
   }
 
   React.useEffect(() => {
@@ -139,7 +141,6 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
         setIsShortFilm={setIsShortFilm}
         onCardClick={onCardClick}
         showErrorPopup={showErrorPopup}
-        setIsSearched={setIsSearched}
         getFilms={getFilms}
       />
       <MoviesCardList
