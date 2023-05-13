@@ -7,6 +7,7 @@ function SearchForm({
   onCardClick,
   showErrorPopup,
   setIsSearched,
+  getFilms,
 }) {
   const [searchInput, setSearchInput] = React.useState(
     localStorage.getItem("searchText") ? localStorage.getItem("searchText") : ""
@@ -20,7 +21,8 @@ function SearchForm({
     } else {
       setIsSearched(true);
       setSearchText(searchInput);
-      onCardClick();
+      localStorage.setItem("searchText", searchInput);
+      getFilms();
     }
   }
 

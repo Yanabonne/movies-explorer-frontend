@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import Main from "../Main/Main";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -13,7 +13,7 @@ import ErrorPopup from "../ErrorPopup/ErrorPopup";
 import { register, authorize, getUserContent } from "../../utils/Auth";
 import api from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -70,6 +70,7 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("token", res.token);
+          localStorage.setItem("isLoggedIn", true);
           setIsLoggedIn(true);
           setCurrentUser(res.data);
           navigate("/movies");
@@ -80,6 +81,12 @@ function App() {
       });
   }
 
+  function exitProfile() {
+    navigate("/");
+    localStorage.clear();
+    setIsLoggedIn(false);
+  }
+
   function tokenCheck() {
     const token = localStorage.getItem("token");
     if (token) {
@@ -87,7 +94,6 @@ function App() {
         .then((res) => {
           setCurrentUser(res.data);
           setIsLoggedIn(true);
-          navigate("/movies");
         })
         .catch((err) => {
           console.log(err);
@@ -136,7 +142,6 @@ function App() {
                 setPageOpen={setPageOpen}
                 showErrorPopup={showErrorPopup}
                 component={Movies}
-                isLoggedIn={isLoggedIn}
               />
             }
           />
@@ -149,7 +154,6 @@ function App() {
                 showErrorPopup={showErrorPopup}
                 setPageOpen={setPageOpen}
                 component={Movies}
-                isLoggedIn={isLoggedIn}
               />
             }
           />
@@ -161,29 +165,37 @@ function App() {
                 setIsLoggedIn={setIsLoggedIn}
                 setPageOpen={setPageOpen}
                 handleUserInfoChange={handleUserInfoChange}
-                element={Profile}
-                isLoggedIn={isLoggedIn}
+                component={Profile}
+                exitProfile={exitProfile}
               />
             }
           />
           <Route
             path="/signup"
             element={
-              <Register
-                setIsFooterShown={setIsFooterShown}
-                setIsHeaderShown={setIsHeaderShown}
-                handleSubmit={handleRegistration}
-              />
+              isLoggedIn ? (
+                <Navigate to="/" />
+              ) : (
+                <Register
+                  setIsFooterShown={setIsFooterShown}
+                  setIsHeaderShown={setIsHeaderShown}
+                  handleSubmit={handleRegistration}
+                />
+              )
             }
           />
           <Route
             path="/signin"
             element={
-              <Login
-                setIsFooterShown={setIsFooterShown}
-                setIsHeaderShown={setIsHeaderShown}
-                handleSubmit={handleAuthorization}
-              />
+              isLoggedIn ? (
+                <Navigate to="/" />
+              ) : (
+                <Login
+                  setIsFooterShown={setIsFooterShown}
+                  setIsHeaderShown={setIsHeaderShown}
+                  handleSubmit={handleAuthorization}
+                />
+              )
             }
           />
           <Route

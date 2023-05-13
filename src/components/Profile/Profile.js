@@ -1,16 +1,14 @@
 import React from "react";
 import "./Profile.css";
 import "../Register/Register.css";
-import { useNavigate } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Profile({
   setIsFooterShown,
-  setIsLoggedIn,
   setPageOpen,
   handleUserInfoChange,
+  exitProfile,
 }) {
-  const navigate = useNavigate();
   const user = React.useContext(CurrentUserContext);
   const [isEditProfile, setIsEditProfile] = React.useState(false);
 
@@ -98,14 +96,7 @@ function Profile({
       >
         Редактировать
       </p>
-      <p
-        className="profile__exit responsive"
-        onClick={() => {
-          navigate("/signin");
-          localStorage.removeItem("token");
-          setIsLoggedIn(false);
-        }}
-      >
+      <p className="profile__exit responsive" onClick={exitProfile}>
         Выйти из аккаунта
       </p>
     </section>
