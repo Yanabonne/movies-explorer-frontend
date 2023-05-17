@@ -8,6 +8,7 @@ function Profile({
   setPageOpen,
   handleUserInfoChange,
   exitProfile,
+  showErrorPopup
 }) {
   const user = React.useContext(CurrentUserContext);
   const [isEditProfile, setIsEditProfile] = React.useState(false);
@@ -64,9 +65,13 @@ function Profile({
 
   function onSubmitForm(e) {
     e.preventDefault();
-    if (validateEmail() & validateName()) {
-      handleUserInfoChange({ name: nameInput, email: emailInput });
-      setIsEditProfile(false);
+    if (nameInput === user.name && emailInput === user.email) {
+      showErrorPopup("Необходимо ввести новые данные.")
+    } else {
+      if (validateEmail() && validateName()) {
+        handleUserInfoChange({ name: nameInput, email: emailInput });
+        setIsEditProfile(false);
+      }
     }
   }
 

@@ -24,6 +24,8 @@ function App() {
   const [isErrorPopupShown, setIsErrorPopupShown] = React.useState();
   const [errorPopupText, setErrorPopupText] = React.useState("");
   const [currentUser, setCurrentUser] = React.useState({});
+  const [initialMovies, setInitialMovies] = React.useState([]);
+  const [savedMovies, setSavedMovies] = React.useState([]);
   const navigate = useNavigate();
 
   function openMovies() {
@@ -59,7 +61,7 @@ function App() {
   function handleRegistration(name, password, email) {
     register(name, password, email)
       .then(() => {
-        navigate("/signin");
+        handleAuthorization(password, email);
       })
       .catch((err) => {
         showErrorPopup(err);
@@ -83,8 +85,11 @@ function App() {
   }
 
   function exitProfile() {
-    navigate("/");
     localStorage.clear();
+    setSavedMovies([]);
+    setInitialMovies([]);
+    setCurrentUser({});
+    navigate("/");
     setIsLoggedIn(false);
   }
 
@@ -143,6 +148,10 @@ function App() {
                 setPageOpen={setPageOpen}
                 showErrorPopup={showErrorPopup}
                 component={Movies}
+                initialMovies={initialMovies}
+                setInitialMovies={setInitialMovies}
+                savedMovies={savedMovies}
+                setSavedMovies={setSavedMovies}
               />
             }
           />
@@ -154,7 +163,11 @@ function App() {
                 onOpen={openSavedMovies}
                 showErrorPopup={showErrorPopup}
                 setPageOpen={setPageOpen}
+                initialMovies={initialMovies}
+                setInitialMovies={setInitialMovies}
                 component={Movies}
+                savedMovies={savedMovies}
+                setSavedMovies={setSavedMovies}
               />
             }
           />
@@ -163,11 +176,11 @@ function App() {
             element={
               <ProtectedRoute
                 setIsFooterShown={setIsFooterShown}
-                setIsLoggedIn={setIsLoggedIn}
                 setPageOpen={setPageOpen}
                 handleUserInfoChange={handleUserInfoChange}
                 component={Profile}
                 exitProfile={exitProfile}
+                showErrorPopup={showErrorPopup}
               />
             }
           />

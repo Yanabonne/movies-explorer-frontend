@@ -7,10 +7,9 @@ function SearchForm({
   onCardClick,
   showErrorPopup,
   getFilms,
+  isSavedMoviesOpen
 }) {
-  const [searchInput, setSearchInput] = React.useState(
-    localStorage.getItem("searchText") ? localStorage.getItem("searchText") : ""
-  );
+  const [searchInput, setSearchInput] = React.useState("");
   const shortFilmsRef = React.useRef();
 
   function editSearch(evt) {
@@ -19,15 +18,15 @@ function SearchForm({
       showErrorPopup("Ошибка: Нужно ввести ключевое слово.");
     } else {
       setSearchText(searchInput);
-      localStorage.setItem("searchText", searchInput);
       getFilms();
+      !isSavedMoviesOpen && localStorage.setItem("searchText", searchInput);
     }
   }
 
   function editShortFilmsSearch() {
     setIsShortFilm(shortFilmsRef.current.checked);
-    localStorage.setItem("isShortFilm", shortFilmsRef.current.checked);
     onCardClick();
+    !isSavedMoviesOpen && localStorage.setItem("isShortFilm", shortFilmsRef.current.checked);
   }
 
   function updateSearchInput(si) {
@@ -35,11 +34,15 @@ function SearchForm({
   }
 
   React.useEffect(() => {
-    if (localStorage.getItem("isShortFilm")) {
+    if (!isSavedMoviesOpen && localStorage.getItem("searchText")) {
       shortFilmsRef.current.checked =
         localStorage.getItem("isShortFilm") === "true";
+      setSearchInput(localStorage.getItem("searchText"));
+    } else {
+      shortFilmsRef.current.checked = false;
+      setSearchInput("");
     }
-  }, []);
+  }, [isSavedMoviesOpen]);
 
   return (
     <section className="search">

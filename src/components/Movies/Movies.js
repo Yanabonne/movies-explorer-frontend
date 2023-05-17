@@ -5,9 +5,7 @@ import apiInintialMovies from "../../utils/MoviesApi";
 import api from "../../utils/MainApi";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
-  const [initialMovies, setInitialMovies] = React.useState([]);
-  const [savedMovies, setSavedMovies] = React.useState([]);
+function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup, initialMovies, setInitialMovies, savedMovies, setSavedMovies }) {
   const [searchText, setSearchText] = React.useState("");
   const [isSearched, setIsSearched] = React.useState(false);
   const [isShortFilm, setIsShortFilm] = React.useState(false);
@@ -79,6 +77,7 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
             for (let i = 0; i < movies.length; i++) {
               if (movies[i].movieId === movie.id) {
                 movie["isLiked"] = true;
+                movie._id = movies[i]._id;
                 break;
               }
             }
@@ -104,7 +103,7 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
             .catch((err) => {
               console.log(err);
               showErrorPopup(
-                "Ошибка: Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+                "Ошибка: Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз."
               );
             });
         }
@@ -112,26 +111,32 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
       .catch((err) => {
         console.log(err);
         showErrorPopup(
-          "Ошибка: Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+          "Ошибка: Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз."
         );
       })
       .finally(() => setIsSearched(true));
   }
 
   React.useEffect(() => {
-    if (localStorage.getItem("searchText")) {
-      setIsSearched(true);
-      setIsShortFilm(localStorage.getItem("isShortFilm") === "true");
-      setSearchText(localStorage.getItem("searchText"));
-    }
-    setPageOpen("Movies");
-  }, []);
-
-  React.useEffect(() => {
-    if (localStorage.getItem("searchText")) {
+    if (isSavedMoviesOpen) {
       getFilms();
+      setIsShortFilm(false);
+      setSearchText("");
+    } else {
+      if (localStorage.getItem("searchText")) {
+        setIsShortFilm(localStorage.getItem("isShortFilm") === "true");
+        setSearchText(localStorage.getItem("searchText"));
+        getFilms();
+      }
     }
     onOpen();
+    setPageOpen("Movies");
+
+    return () => {
+      if (isSavedMoviesOpen) {
+        setIsSearched(false);
+      }
+    }
   }, [isSavedMoviesOpen]);
 
   return (
@@ -142,6 +147,7 @@ function Movies({ isSavedMoviesOpen, onOpen, setPageOpen, showErrorPopup }) {
         onCardClick={onCardClick}
         showErrorPopup={showErrorPopup}
         getFilms={getFilms}
+        isSavedMoviesOpen={isSavedMoviesOpen}
       />
       <MoviesCardList
         movies={isSavedMoviesOpen ? savedMovies : initialMovies}
