@@ -23,6 +23,13 @@
   cursor: pointer;
 }
 
+.movies__no-results {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.25;
+  text-align: center;
+}
+
 @media screen and (max-width: 1350px) {
   .movies {
     padding: 80px 70px;

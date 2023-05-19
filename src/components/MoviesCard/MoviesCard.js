@@ -1,14 +1,13 @@
 import React from "react";
 import "./MoviesCard.css";
+import { changeMinutesWordForm } from "../../utils/utils";
 
-function MoviesCard({ card, onSavedCardClick, isSavedMoviesOpen }) {
+function MoviesCard({ card, isSavedMoviesOpen, deleteMovie, addMovie }) {
   function onCardClick() {
     if (card.isLiked) {
-      card.isLiked = false;
-      onSavedCardClick();
+      deleteMovie(card);
     } else {
-      card.isLiked = true;
-      onSavedCardClick();
+      addMovie(card);
     }
   }
 
@@ -16,13 +15,26 @@ function MoviesCard({ card, onSavedCardClick, isSavedMoviesOpen }) {
     <article className="card">
       <div className="card__description">
         <p className="card__name">{card.nameRU}</p>
-        <p className="card__length">{card.duration} минут</p>
+        <p className="card__length">{`${card.duration} ${changeMinutesWordForm(
+          card.duration
+        )}`}</p>
       </div>
-      <img
-        className="card__picture"
-        alt="Постер Фильма"
-        src={`https://api.nomoreparties.co${card.image.url}`}
-      />
+      <a
+        className="card__trailer responsive"
+        href={isSavedMoviesOpen ? card.trailer : card.trailerLink}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img
+          className="card__picture"
+          alt="Постер Фильма"
+          src={
+            isSavedMoviesOpen
+              ? card.image
+              : `https://api.nomoreparties.co${card.image.url}`
+          }
+        />
+      </a>
       <button
         className={
           !isSavedMoviesOpen

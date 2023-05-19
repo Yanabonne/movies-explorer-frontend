@@ -30,6 +30,10 @@ https://yanabonnemovies.nomoredomains.monster/
 
 https://www.figma.com/file/cGRjF1hrMWRhFZAB19MpdI/Diploma-(Copy)?node-id=891%3A3857&t=pL0mW83x1LDylGKV-1
 
+**:clapper: Ссылка на pull request**
+
+https://github.com/Yanabonne/movies-explorer-frontend/pull/2
+
 **:clapper: Команда для сборки и запуска проекта**
 
 ```

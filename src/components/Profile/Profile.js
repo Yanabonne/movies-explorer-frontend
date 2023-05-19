@@ -1,19 +1,25 @@
 import React from "react";
 import "./Profile.css";
 import "../Register/Register.css";
-import { useNavigate } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile({ user, setIsFooterShown, setIsLoggedIn, setPageOpen }) {
-  const navigate = useNavigate();
+function Profile({
+  setIsFooterShown,
+  setPageOpen,
+  handleUserInfoChange,
+  exitProfile,
+  showErrorPopup
+}) {
+  const user = React.useContext(CurrentUserContext);
   const [isEditProfile, setIsEditProfile] = React.useState(false);
 
   const emailRef = React.useRef();
-  const [emailInput, setEmailInput] = React.useState("");
+  const [emailInput, setEmailInput] = React.useState(user.email);
   const [isEmailValid, setIsEmailValid] = React.useState(true);
   const [emailInputError, setEmailInputError] = React.useState("");
 
   const nameRef = React.useRef();
-  const [nameInput, setNameInput] = React.useState("");
+  const [nameInput, setNameInput] = React.useState(user.name);
   const [isNameValid, setIsNameValid] = React.useState(true);
   const [nameInputError, setNameInputError] = React.useState("");
 
@@ -59,8 +65,13 @@ function Profile({ user, setIsFooterShown, setIsLoggedIn, setPageOpen }) {
 
   function onSubmitForm(e) {
     e.preventDefault();
-    if (validateEmail() & validateName()) {
-      setIsEditProfile(false);
+    if (nameInput === user.name && emailInput === user.email) {
+      showErrorPopup("Необходимо ввести новые данные.")
+    } else {
+      if (validateEmail() && validateName()) {
+        handleUserInfoChange({ name: nameInput, email: emailInput });
+        setIsEditProfile(false);
+      }
     }
   }
 
@@ -90,13 +101,7 @@ function Profile({ user, setIsFooterShown, setIsLoggedIn, setPageOpen }) {
       >
         Редактировать
       </p>
-      <p
-        className="profile__exit responsive"
-        onClick={() => {
-          navigate("/signin");
-          setIsLoggedIn(false);
-        }}
-      >
+      <p className="profile__exit responsive" onClick={exitProfile}>
         Выйти из аккаунта
       </p>
     </section>
@@ -144,6 +149,7 @@ function Profile({ user, setIsFooterShown, setIsLoggedIn, setPageOpen }) {
         <button
           className="reg__button reg__button_login responsive"
           type="submit"
+          disabled={isEmailValid && isNameValid ? false : true}
         >
           Сохранить
         </button>

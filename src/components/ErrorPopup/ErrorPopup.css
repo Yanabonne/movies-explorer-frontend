@@ -2,9 +2,9 @@
   position: fixed;
   bottom: 15px;
   right: 15px;
-  padding: 10px;
-  border-radius: 10px;
-  border: solid 1px #ee3465;
+  padding: 15px;
+  border-radius: 6px;
+  border: solid 1px #ff6838;
   width: 200px;
   background: white;
   z-index: 1;
@@ -13,12 +13,27 @@
 .error__text {
   width: 100%;
   font-weight: 400;
-  font-size: 12px;
-  line-height: 1.2;
+  font-size: 14px;
+  line-height: 1.5;
   margin: 0;
 }
 
 .error__span {
   color: #ee3465;
   font-weight: 400;
+}
+
+.error__button {
+  background: none;
+  background-image: url("../../images/cross-menu.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }

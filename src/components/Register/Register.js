@@ -3,24 +3,22 @@ import "./Register.css";
 import star from "../../images/star.svg";
 import { useNavigate } from "react-router-dom";
 
-function Register({ setIsFooterShown, setIsHeaderShown }) {
+function Register({ setIsFooterShown, setIsHeaderShown, handleSubmit }) {
   const navigate = useNavigate();
 
   const emailRef = React.useRef();
   const [emailInput, setEmailInput] = React.useState("");
-  const [isEmailValid, setIsEmailValid] = React.useState(true);
+  const [isEmailValid, setIsEmailValid] = React.useState(false);
   const [emailInputError, setEmailInputError] = React.useState("");
 
   const passwordRef = React.useRef();
-  const [passwordInput, setPasswordInput] = React.useState("hey");
+  const [passwordInput, setPasswordInput] = React.useState("");
   const [isPasswordValid, setIsPasswordValid] = React.useState(false);
-  const [passwordInputError, setPasswordInputError] = React.useState(
-    "Минимально допустимое количество символов: 8. Длина текста сейчас: 3."
-  );
+  const [passwordInputError, setPasswordInputError] = React.useState("");
 
   const nameRef = React.useRef();
   const [nameInput, setNameInput] = React.useState("");
-  const [isNameValid, setIsNameValid] = React.useState(true);
+  const [isNameValid, setIsNameValid] = React.useState(false);
   const [nameInputError, setNameInputError] = React.useState("");
 
   function updateEmail(email) {
@@ -86,7 +84,7 @@ function Register({ setIsFooterShown, setIsHeaderShown }) {
   function onSubmitForm(e) {
     e.preventDefault();
     if (validateEmail() && validatePassword() && validateName()) {
-      navigate("/signin");
+      handleSubmit(nameInput, passwordInput, emailInput);
     }
   }
 
@@ -163,7 +161,13 @@ function Register({ setIsFooterShown, setIsHeaderShown }) {
           onChange={(e) => updatePassword(e.target.value)}
         />
         <span className="reg__input-error">{passwordInputError}</span>
-        <button className="reg__button responsive" type="submit">
+        <button
+          className="reg__button responsive"
+          type="submit"
+          disabled={
+            isEmailValid && isNameValid && isPasswordValid ? false : true
+          }
+        >
           Зарегистрироваться
         </button>
       </form>

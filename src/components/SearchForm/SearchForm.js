@@ -1,24 +1,48 @@
 import React from "react";
 import "./SearchForm.css";
 
-function SearchForm({ setSearchText, setIsShortFilm, onCardClick }) {
-  const [searchInput, setSearchInput] = React.useState();
+function SearchForm({
+  setSearchText,
+  setIsShortFilm,
+  onCardClick,
+  showErrorPopup,
+  getFilms,
+  isSavedMoviesOpen
+}) {
+  const [searchInput, setSearchInput] = React.useState("");
   const shortFilmsRef = React.useRef();
 
   function editSearch(evt) {
     evt.preventDefault();
-    setSearchText(searchInput);
-    onCardClick();
+    if (!searchInput) {
+      showErrorPopup("Ошибка: Нужно ввести ключевое слово.");
+    } else {
+      setSearchText(searchInput);
+      getFilms();
+      !isSavedMoviesOpen && localStorage.setItem("searchText", searchInput);
+    }
   }
 
   function editShortFilmsSearch() {
     setIsShortFilm(shortFilmsRef.current.checked);
     onCardClick();
+    !isSavedMoviesOpen && localStorage.setItem("isShortFilm", shortFilmsRef.current.checked);
   }
 
   function updateSearchInput(si) {
     setSearchInput(si);
   }
+
+  React.useEffect(() => {
+    if (!isSavedMoviesOpen && localStorage.getItem("searchText")) {
+      shortFilmsRef.current.checked =
+        localStorage.getItem("isShortFilm") === "true";
+      setSearchInput(localStorage.getItem("searchText"));
+    } else {
+      shortFilmsRef.current.checked = false;
+      setSearchInput("");
+    }
+  }, [isSavedMoviesOpen]);
 
   return (
     <section className="search">

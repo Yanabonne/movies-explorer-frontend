@@ -3,17 +3,17 @@ import "../Register/Register.css";
 import star from "../../images/star.svg";
 import { useNavigate } from "react-router-dom";
 
-function Login({ setIsFooterShown, setIsHeaderShown, setIsLoggedIn }) {
+function Login({ setIsFooterShown, setIsHeaderShown, handleSubmit }) {
   const navigate = useNavigate();
 
   const emailRef = React.useRef();
   const [emailInput, setEmailInput] = React.useState("");
-  const [isEmailValid, setIsEmailValid] = React.useState(true);
+  const [isEmailValid, setIsEmailValid] = React.useState(false);
   const [emailInputError, setEmailInputError] = React.useState("");
 
   const passwordRef = React.useRef();
   const [passwordInput, setPasswordInput] = React.useState("");
-  const [isPasswordValid, setIsPasswordValid] = React.useState(true);
+  const [isPasswordValid, setIsPasswordValid] = React.useState(false);
   const [passwordInputError, setPasswordInputError] = React.useState("");
 
   function updateEmail(email) {
@@ -59,8 +59,7 @@ function Login({ setIsFooterShown, setIsHeaderShown, setIsLoggedIn }) {
   function onSubmitForm(e) {
     e.preventDefault();
     if (validateEmail() && validatePassword()) {
-      setIsLoggedIn(true);
-      navigate("/movies");
+      handleSubmit(passwordInput, emailInput);
     }
   }
 
@@ -121,6 +120,7 @@ function Login({ setIsFooterShown, setIsHeaderShown, setIsLoggedIn }) {
         <button
           className="reg__button reg__button_login responsive"
           type="submit"
+          disabled={isEmailValid && isPasswordValid ? false : true}
         >
           Войти
         </button>
